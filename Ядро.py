@@ -38,6 +38,7 @@ while running:
             else:
                 playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
 
+            # Проверка Кнопки настроек
             if int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117//2+sizes_x // 3) and int(sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(130 // 2 + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
                 playful_button = sprays.sprite_button("sprays\\button\\старт_2.png", int(sizes_x // 3), int(sizes_y // 2))
 
