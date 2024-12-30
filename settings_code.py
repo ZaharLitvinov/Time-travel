@@ -15,17 +15,14 @@ sound_button = sprays.sprite_button("sprays\\button\\Звук_1.png", int(sizes_
 
 while running:
     for event in pygame.event.get():
-        screen.blit(sound_button.image, sound_button.rect)
+
         if event.type == pygame.QUIT:
             running = False
         if pygame.mouse.get_focused:
-            # Проверка Кнопки старт
+            # Проверка Кнопки Звук
             mouse_pos_x, mouse_pos_y = pygame.mouse.get_pos()
-            if int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117 // 2 + sizes_x // 3) and int(
-                    sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(
-                    130 // 2 + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
-                playful_button = sprays.sprite_button("sprays\\button\\старт_2.png", int(sizes_x // 3),
-                                                      int(sizes_y // 2))
+            if int(sizes_x // 9 - 101 // 2) <= mouse_pos_x <= int(101 // 2 + sizes_x // 9) and int(sizes_y // 7 - 100 // 2) <= mouse_pos_y <= int(100 // 2 + sizes_y // 7):  # добавляем текст если мы в размерах кнопки
+                original_button = sprays.sprite_button("sprays\\button\\Звук_2.png", int(sizes_x // 9), int(sizes_y // 7))
 
                 # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
 
@@ -33,8 +30,8 @@ while running:
                     # тут запуск файла
                     running = False
             else:
-                playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3),
-                                                      int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
-    pygame.display.flip()
+                original_button = sprays.sprite_button("sprays\\button\\Звук_1.png", int(sizes_x // 9), int(sizes_y // 7))  # не добавляем текст если мы не в размерах кнопки
+        screen.blit(sound_button.image, sound_button.rect)
+        pygame.display.flip()
     pygame.time.Clock().tick(360)
 pygame.quit()
