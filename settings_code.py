@@ -31,7 +31,9 @@ while running:
                     running = False
             else:
                 original_button = sprays.sprite_button("sprays\\button\\Звук_1.png", int(sizes_x // 9), int(sizes_y // 7))  # не добавляем текст если мы не в размерах кнопки
-        screen.blit(sound_button.image, sound_button.rect)
-        pygame.display.flip()
-    pygame.time.Clock().tick(360)
+
+            screen.blit(sound_button.image, sound_button.rect)
+            pygame.display.flip()
+
+        pygame.time.Clock().tick(360)
 pygame.quit()
