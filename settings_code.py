@@ -1,1 +1,4 @@
-print('тутутутутутуутутутутутут')
+import pygame
+
+pygame.init()
+sprays =
