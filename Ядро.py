@@ -10,7 +10,7 @@ running = True
 
 playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2))
 settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))
-exit_button = sprays.sprite_button("sprays\\button\\выход.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))
+exit_button = sprays.sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))
 
 # запуск фона
 
@@ -50,18 +50,17 @@ while running:
             else:
                 settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
 
-            # Проверка Кнопки настроек
-            if int(sizes_x // 3 * 2 - 120 // 2) <= mouse_pos_x <= int(120 // 2 + (sizes_x // 3 * 2)) and int((sizes_y // 2) - 120 // 2) <= mouse_pos_y <= int((120 // 2) + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
-                exit_button = sprays.sprite_button("sprays\\button\\настройки_2.png", int((sizes_x // 3) * 2),  int(sizes_y // 2))
+            # Проверка Кнопки выход
+            if int((sizes_x // 3) * 1.5 - 120 // 2) <= mouse_pos_x <= int(120 // 2 + (sizes_x // 3) * 1.5) and int(((sizes_y // 2) * 1.5) - 120 // 2) <= mouse_pos_y <= int(((sizes_y // 2) * 1.5) + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
+                exit_button = sprays.sprite_button("sprays\\button\\выход_2.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))
 
                 # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
 
                 if event.type == pygame.MOUSEBUTTONUP:
-                    # тут запуск файла
                     running = False
 
             else:
-                exit_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
+                exit_button = sprays.sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))  # не добавляем текст если мы не в размерах кнопки
 
         screen.blit(original_background, (0, 0))
         screen.blit(playful_button.image, playful_button.rect)
