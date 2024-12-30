@@ -1,5 +1,6 @@
 import pygame
 import sprays
+import sys
 
 pygame.init()
 sizes_x, sizes_y = 1715, 970   # по размерам изображения
@@ -47,7 +48,7 @@ while running:
                 # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
 
                 if event.type == pygame.MOUSEBUTTONUP:
-                    # тут запуск файла
+                    sys.exit('settings_code.py')
                     running = False
             else:
                 settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
