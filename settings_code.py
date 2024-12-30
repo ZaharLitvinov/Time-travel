@@ -24,6 +24,7 @@ while running:
             if int(sizes_x // 9 - 101 // 2) <= mouse_pos_x <= int(101 // 2 + sizes_x // 9) and int(sizes_y // 7 - 100 // 2) <= mouse_pos_y <= int(100 // 2 + sizes_y // 7):  # добавляем текст если мы в размерах кнопки
                 original_button = sprays.sprite_button("sprays\\button\\Звук_2.png", int(sizes_x // 9), int(sizes_y // 7))
 
+                print("я тут")
                 # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
 
                 if event.type == pygame.MOUSEBUTTONUP:
@@ -32,6 +33,7 @@ while running:
             else:
                 original_button = sprays.sprite_button("sprays\\button\\Звук_1.png", int(sizes_x // 9), int(sizes_y // 7))  # не добавляем текст если мы не в размерах кнопки
 
+            screen.blit(original_background, (0, 0))
             screen.blit(sound_button.image, sound_button.rect)
             pygame.display.flip()
 
