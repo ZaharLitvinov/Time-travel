@@ -9,7 +9,7 @@ running = True
 # создания кнопак
 
 playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2))
-settings_button = sprays.sprite_button("sprays\\button\\настройки.png", int((sizes_x // 3) * 2), int(sizes_y // 2))
+settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))
 exit_button = sprays.sprite_button("sprays\\button\\выход.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))
 
 # запуск фона
@@ -25,8 +25,19 @@ while running:
             running = False
         # если мышка на дисплеи
         if pygame.mouse.get_focused:
-            # Проверка Кнопки
+            # Проверка Кнопки старт
             mouse_pos_x, mouse_pos_y = pygame.mouse.get_pos()
+            if int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117//2+sizes_x // 3) and int(sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(130 // 2 + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
+                playful_button = sprays.sprite_button("sprays\\button\\старт_2.png", int(sizes_x // 3), int(sizes_y // 2))
+
+                # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                    # тут запуск файла
+                    running = False
+            else:
+                playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
+
             if int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117//2+sizes_x // 3) and int(sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(130 // 2 + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
                 playful_button = sprays.sprite_button("sprays\\button\\старт_2.png", int(sizes_x // 3), int(sizes_y // 2))
 
