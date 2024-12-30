@@ -49,6 +49,7 @@ while running:
 
                 if event.type == pygame.MOUSEBUTTONUP:
                     running = False
+                    pygame.quit()
                     subprocess.run(['python', 'settings_code.py'])
             else:
                 settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
