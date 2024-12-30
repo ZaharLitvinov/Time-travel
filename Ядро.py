@@ -29,14 +29,14 @@ while running:
             mouse_pos_x, mouse_pos_y = pygame.mouse.get_pos()
             if int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117//2+sizes_x // 3) and int(sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(130 // 2 + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
                 playful_button = sprays.sprite_button("sprays\\button\\старт_2.png", int(sizes_x // 3), int(sizes_y // 2))
+
+                # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                    # тут запуск файла
+                    running = False
             else:
                 playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
-
-            # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
-            if event.type == pygame.MOUSEBUTTONUP and int(sizes_x // 3 - 117 // 2) <= mouse_pos_x <= int(117//2+sizes_x // 3) and int(sizes_y // 2 - 130 // 2) <= mouse_pos_y <= int(130 // 2 + sizes_y // 2):
-                # тут запуск файла
-                running = False
-
 
         screen.blit(original_background, (0, 0))
         screen.blit(playful_button.image, playful_button.rect)
