@@ -50,6 +50,19 @@ while running:
             else:
                 settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
 
+            # Проверка Кнопки настроек
+            if int(sizes_x // 3 * 2 - 120 // 2) <= mouse_pos_x <= int(120 // 2 + (sizes_x // 3 * 2)) and int((sizes_y // 2) - 120 // 2) <= mouse_pos_y <= int((120 // 2) + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
+                exit_button = sprays.sprite_button("sprays\\button\\настройки_2.png", int((sizes_x // 3) * 2),  int(sizes_y // 2))
+
+                # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                    # тут запуск файла
+                    running = False
+
+            else:
+                exit_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2))  # не добавляем текст если мы не в размерах кнопки
+
         screen.blit(original_background, (0, 0))
         screen.blit(playful_button.image, playful_button.rect)
         screen.blit(settings_button.image, settings_button.rect)
