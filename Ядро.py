@@ -45,7 +45,7 @@ while running:
             if int(sizes_x // 3 * 2 - 120 // 2) <= mouse_pos_x <= int(120//2+(sizes_x // 3 * 2)) and int((sizes_y // 2) - 120 // 2) <= mouse_pos_y <= int((120 // 2) + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
                 settings_button = sprays.sprite_button("sprays\\button\\настройки_2.png", int((sizes_x // 3) * 2), int(sizes_y // 2))
 
-                # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
+                # Нажата кнопка закрывает этот файл закрываем, а с настройками запускаем
 
                 if event.type == pygame.MOUSEBUTTONUP:
                     running = False
@@ -58,7 +58,7 @@ while running:
             if int((sizes_x // 3) * 1.5 - 120 // 2) <= mouse_pos_x <= int(120 // 2 + (sizes_x // 3) * 1.5) and int(((sizes_y // 2) * 1.5) - 120 // 2) <= mouse_pos_y <= int(((sizes_y // 2) * 1.5) + sizes_y // 2):  # добавляем текст если мы в размерах кнопки
                 exit_button = sprays.sprite_button("sprays\\button\\выход_2.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5))
 
-                # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
+                # Нажата кнопка закрывает программу
 
                 if event.type == pygame.MOUSEBUTTONUP:
                     running = False
