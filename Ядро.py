@@ -10,9 +10,9 @@ running = True
 
 # создания кнопак
 
-playful_button = sprays.sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2), 117, 130)
-settings_button = sprays.sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2), 120, 120)
-exit_button = sprays.sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
+playful_button = sprays.Sprite_button("sprays\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2), 117, 130)
+settings_button = sprays.Sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2), 120, 120)
+exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
 # запуск фона
 
