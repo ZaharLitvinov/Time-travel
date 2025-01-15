@@ -45,9 +45,6 @@ class Player(pygame.sprite.Sprite):
         if not '+' in click_name_button:
             if click_name_button == self.rect:
                 self.pos_x += 5
-
-                self.image = pygame.image.load(self.file_path_global)
-                self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             if click_name_button == self.left:
                 self.pos_x += 5
             if click_name_button == self.up:
@@ -60,4 +57,3 @@ class Player(pygame.sprite.Sprite):
 
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-
