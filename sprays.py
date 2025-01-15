@@ -21,7 +21,7 @@ class Sprite_button(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, file_path, pos_x, pos_y, height, width, up='w', right='d', left='a', back='s'):
+    def __init__(self, file_path, pos_x, pos_y, height, width, up='w', right='d', left='a'):
         pygame.sprite.Sprite.__init__(self)
 
         # позиция размеры и картинка
@@ -37,15 +37,23 @@ class Player(pygame.sprite.Sprite):
         self.up = up
         self.right = right
         self.left = left
-        self.back = back
+
         self.image = pygame.image.load(file_path)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
 
+    # если нажата кнопка
+
     def movements(self, click_name_button):
-        def up_def():
-            return True
+        if not '+' in click_name_button:
+            if click_name_button == self.rect:
+                self.pos_x += 5
+            if click_name_button == self.left:
+                self.pos_x += 5
+            if click_name_button == self.up:
+        else:
+            click_name_button = str(click_name_button).split('+')
+            if click_name_button[1] == self.rect:
+                pass
 
-
-        if up_def:
-            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
 
