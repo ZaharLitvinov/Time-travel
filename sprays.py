@@ -50,6 +50,8 @@ class Player(pygame.sprite.Sprite):
             if click_name_button == self.left:
                 self.pos_x += 5
             if click_name_button == self.up:
+                pass
+
         else:
             click_name_button = str(click_name_button).split('+')
             if click_name_button[1] == self.rect:
