@@ -19,3 +19,7 @@ class sprite_button(pygame.sprite.Sprite):
         else:
             self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+
+class player:
+    def __init__(self):
+        pass
