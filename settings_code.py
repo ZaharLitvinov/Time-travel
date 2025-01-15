@@ -1,20 +1,25 @@
-
+import sprays
 import pygame
-FPS = 60
+
 pygame.init()
 clock = pygame.time.Clock()
-movie = pygame.movie.Movie('Озвучеа текста\\Первый диолог вступление\\Превю со звуком.mp4')
-screen = pygame.display.set_mode(movie.get_size())
-movie_screen = pygame.Surface(movie.get_size()).convert()
-movie.set_display(movie_screen)
-movie.play()
+
+screen = pygame.display.set_mode((500, 500))
+p = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
+
+
+
 playing = True
 while playing:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            movie.stop()
             playing = False
-    screen.blit(movie_screen,(0,0))
-    pygame.display.update()
-    clock.tick(FPS)
+        if event.type == pygame.KEYUP:
+            if pygame.K_d:
+                print("Я блин не тут")
+                p.movements('d')
+                print(p.pos_x)
+        screen.blit(p.image, p.rect)
+        pygame.display.flip()
+    clock.tick(120)
 pygame.quit()
