@@ -41,21 +41,8 @@ class Player(pygame.sprite.Sprite):
 
     # если нажата кнопка
 
-    def movements(self, click_name_button):
-        if not '+' in click_name_button:
-            if self.right in click_name_button:
-                self.pos_x += 5
-                self.image = pygame.image.load(self.file_path_global)
-                self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-            if click_name_button == self.left:
-                self.pos_x += 5
-            if click_name_button == self.up:
-                pass
-
-        else:
-            click_name_button = str(click_name_button).split('+')
-            if click_name_button[1] == self.rect:
-                pass
+    def movements(self, event):
+        print(event)
 
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
