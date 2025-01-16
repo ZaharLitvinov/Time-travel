@@ -1,4 +1,9 @@
 import pygame
+import os
+from ffpyplayer.player import MediaPlayer
+from ffpyplayer.tools import set_loglevel
+from pymediainfo import MediaInfo
+from errno import ENOENT
 # кнопки
 class Sprite_button(pygame.sprite.Sprite):
     def __init__(self, file_path, pos_x, pos_y, height, width):
@@ -56,14 +61,6 @@ class Player(pygame.sprite.Sprite):
 
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-
-
-import pygame
-import os
-from ffpyplayer.player import MediaPlayer
-from ffpyplayer.tools import set_loglevel
-from pymediainfo import MediaInfo
-from errno import ENOENT
 
 
 class Video:
