@@ -66,7 +66,7 @@ while running:
         else:
             screen.fill(color=(55, 0, 0, 255))
         if game:
-            prehistory = sprays.Video()
+            prehistory = sprays.Video('')
             screen.fill(color=(0, 0, 0, 255))
             egypt = True
             if egypt:
