@@ -60,6 +60,7 @@ while running:
             screen.blit(exit_button.image, exit_button.rect)
         else:
             screen.fill(color=(0, 0, 0, 255))
+
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 pygame.quit()
