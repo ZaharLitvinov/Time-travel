@@ -14,12 +14,17 @@ playful_button = sprays.Sprite_button("sprays\\button\\старт_1.png", int(si
 settings_button = sprays.Sprite_button("sprays\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2), 120, 120)
 exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
+# Персонаж
+main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
+
 # запуск фона
 
 original_background = pygame.image.load('sprays\\backgrounds\\original background.png')
 
 # основной цикл
 start_window = True
+game = False
+egypt = False
 
 while running:
     for event in pygame.event.get():
@@ -37,7 +42,7 @@ while running:
                     # Нажата кнопка закрывает этот файл закрываем, а с основной игрой запускаем
 
                     if event.type == pygame.MOUSEBUTTONUP:
-                        # тут запуск файла
+                        game = True
                         start_window = False
 
                 # Проверка Кнопки настроек
@@ -59,8 +64,16 @@ while running:
             screen.blit(settings_button.image, settings_button.rect)
             screen.blit(exit_button.image, exit_button.rect)
         else:
-            screen.fill(color=(0, 0, 0, 255))
+            screen.fill(color=(55, 0, 0, 255))
+        if game:
 
+            screen.fill(color=(0, 0, 0, 255))
+            egypt = True
+            if egypt:
+                while main_hero.movements(event):
+                    print('Я тут')
+
+                screen.blit(main_hero.image, main_hero.rect)
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 pygame.quit()

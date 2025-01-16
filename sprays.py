@@ -42,7 +42,18 @@ class Player(pygame.sprite.Sprite):
     # если нажата кнопка
 
     def movements(self, event):
-        print(event)
+        if event.type == pygame.KEYUP:
+            if event.unicode in [self.right, self.right.upper()]:
+                self.pos_x += 5
+            if event.unicode in [self.left, self.left.upper()]:
+                self.pos_x -= 5
+            else:
+                return False
+        if event.type == pygame.TEXTINPUT:
+            if event.text in [self.right, self.right.upper()]:
+                self.pos_x += 5
+            if event.text in [self.left, self.left.upper()]:
+                self.pos_x -= 5
 
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
