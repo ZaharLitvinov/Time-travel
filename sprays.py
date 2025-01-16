@@ -47,8 +47,7 @@ class Player(pygame.sprite.Sprite):
                 self.pos_x += 5
             if event.unicode in [self.left, self.left.upper()]:
                 self.pos_x -= 5
-            else:
-                return False
+
         if event.type == pygame.TEXTINPUT:
             if event.text in [self.right, self.right.upper()]:
                 self.pos_x += 5

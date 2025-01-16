@@ -70,8 +70,7 @@ while running:
             screen.fill(color=(0, 0, 0, 255))
             egypt = True
             if egypt:
-                while main_hero.movements(event):
-                    print('Я тут')
+                main_hero.movements(event)
 
                 screen.blit(main_hero.image, main_hero.rect)
         pygame.display.flip()
