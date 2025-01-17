@@ -15,6 +15,7 @@ settings_button = sprays.Sprite_button("sprays\\button\\настройки_1.png
 exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
 # Персонаж
+
 main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
 
 # запуск фона
@@ -66,13 +67,11 @@ while running:
         else:
             screen.fill(color=(55, 0, 0, 255))
         if game:
-            prehistory = sprays.Video('')
+
             screen.fill(color=(0, 0, 0, 255))
             egypt = True
             if egypt:
-                main_hero.movements(event)
-
-                screen.blit(main_hero.image, main_hero.rect)
+                main_hero.movements(event, screen)
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 pygame.quit()
