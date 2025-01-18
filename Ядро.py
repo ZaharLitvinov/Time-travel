@@ -16,7 +16,7 @@ exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((size
 
 # Персонаж
 
-main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
+main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)в
 
 # запуск фона
 
@@ -72,6 +72,8 @@ while running:
             egypt = True
             if egypt:
                 main_hero.movements(event, screen)
+
+
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 pygame.quit()
