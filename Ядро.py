@@ -70,7 +70,7 @@ while running:
             screen.fill(color=(0, 0, 0, 255))
             egypt = True
             if egypt:
-                main_hero.movements(event, screen)
+                main_hero.movements(event, screen, 5)
 
         pygame.display.flip()
         pygame.time.Clock().tick(360)

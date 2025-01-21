@@ -67,18 +67,22 @@ class Player(pygame.sprite.Sprite):
         if event.type == pygame.KEYUP:
             if event.unicode in [self.up, self.up.upper()]:
                 display.fill(color=(0, 0, 0, 255))
-                for i in range(jump_power):
-                    self.pos_y -= 5
-                    self.image = pygame.image.load(self.file_path_global)
-                    self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                    display.blit(self.image, self.rect)
-                    pygame.display.flip()
-                for i in range(jump_power):
-                    self.pos_y += 5
-                    self.image = pygame.image.load(self.file_path_global)
-                    self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                    display.blit(self.image, self.rect)
-                    pygame.display.flip()
+                if not (event.unicode in [self.right, self.right.upper()] or event.unicode in [self.left, self.left.upper()]):
+                    for i in range(jump_power):
+                        self.pos_y -= 5
+                        self.image = pygame.image.load(self.file_path_global)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(self.image, self.rect)
+                        pygame.display.flip()
+                    for i in range(jump_power):
+                        self.pos_y += 5
+                        self.image = pygame.image.load(self.file_path_global)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(self.image, self.rect)
+                        pygame.display.flip()
+                else:
+
+
 
 class Video:
     def __init__(self, path):
