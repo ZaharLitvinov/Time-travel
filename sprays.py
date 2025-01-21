@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
 
     # если нажата кнопка
 
-    def movements(self, event, display):
+    def movements(self, event, display, jump_power):
         if event.type == pygame.KEYUP:
             if event.unicode in [self.right, self.right.upper()]:
                 self.pos_x += 5
@@ -67,13 +67,13 @@ class Player(pygame.sprite.Sprite):
         if event.type == pygame.KEYUP:
             if event.unicode in [self.up, self.up.upper()]:
                 display.fill(color=(0, 0, 0, 255))
-                for i in range(100):
+                for i in range(jump_power):
                     self.pos_y -= 5
                     self.image = pygame.image.load(self.file_path_global)
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
                     pygame.display.flip()
-                for i in range(100):
+                for i in range(jump_power):
                     self.pos_y += 5
                     self.image = pygame.image.load(self.file_path_global)
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
