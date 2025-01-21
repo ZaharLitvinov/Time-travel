@@ -79,9 +79,10 @@ while running:
                     counter += 1
                     if counter == 2:
                         counter = 0
-                        if event.type == pygame.KEYUP:
+                        if event.type == pygame.KEYUP and event.unicode.lower() != main_hero.up:
                             second_button = event.unicode.lower()
-                print(second_button)
+                    main_hero.jump(screen, 5, second_button)
+                    second_button = ''
 
         pygame.display.flip()
         pygame.time.Clock().tick(360)
