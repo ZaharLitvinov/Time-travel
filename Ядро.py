@@ -26,6 +26,7 @@ original_background = pygame.image.load('sprays\\backgrounds\\original backgroun
 start_window = True
 game = False
 egypt = False
+counter = 0
 
 while running:
     for event in pygame.event.get():
@@ -69,10 +70,18 @@ while running:
 
             screen.fill(color=(0, 0, 0, 255))
             egypt = True
+            second_button = ''
             if egypt:
-
-                if main_hero.movements(event, screen):
-                    main_hero.movements.jum p()
+                flag = True
+                main_hero.movements(event, screen)
+                if flag or main_hero.movements(event, screen):
+                    flag = True
+                    counter += 1
+                    if counter == 2:
+                        counter = 0
+                        if event.type == pygame.KEYUP:
+                            second_button = event.unicode.lower()
+                print(second_button)
 
         pygame.display.flip()
         pygame.time.Clock().tick(360)
