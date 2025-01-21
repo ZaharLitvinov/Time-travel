@@ -16,7 +16,7 @@ exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((size
 
 # Персонаж
 
-main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)в
+main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
 
 # запуск фона
 
@@ -64,8 +64,7 @@ while running:
             screen.blit(playful_button.image, playful_button.rect)
             screen.blit(settings_button.image, settings_button.rect)
             screen.blit(exit_button.image, exit_button.rect)
-        else:
-            screen.fill(color=(55, 0, 0, 255))
+
         if game:
 
             screen.fill(color=(0, 0, 0, 255))
