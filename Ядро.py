@@ -72,7 +72,6 @@ while running:
             if egypt:
                 main_hero.movements(event, screen)
 
-
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 pygame.quit()

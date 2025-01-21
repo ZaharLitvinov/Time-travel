@@ -62,6 +62,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
         display.blit(self.image, self.rect)
+        pygame.display.flip()
 
         if event.type == pygame.KEYUP:
             if event.unicode in [self.up, self.up.upper()]:
@@ -71,11 +72,13 @@ class Player(pygame.sprite.Sprite):
                     self.image = pygame.image.load(self.file_path_global)
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
+                    pygame.display.flip()
                 for i in range(100):
                     self.pos_y += 5
                     self.image = pygame.image.load(self.file_path_global)
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
+                    pygame.display.flip()
 
 class Video:
     def __init__(self, path):
