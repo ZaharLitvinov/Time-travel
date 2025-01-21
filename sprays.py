@@ -69,47 +69,21 @@ class Player(pygame.sprite.Sprite):
                 display.fill(color=(0, 0, 0, 255))
                 counter = 0
                 second_button = False
-                for event in pygame.event.get():
-                    if counter != 40:
-                        counter += 1
-
-                    if event.type == pygame.KEYUP:
-                        if event.unicode in [self.up, self.up.upper()] or event.unicode in [self.up, self.up.upper()]:
-                            second_button = True
-                            button = event.unicode.lower()
-
-                    if counter == 40:
-                        break
-                if not second_button:
+                if event.unicode.lower() == self.up:
                     for i in range(jump_power):
+                        display.fill(color=(0, 0, 0, 255))
                         self.pos_y -= 5
                         self.image = pygame.image.load(self.file_path_global)
                         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                         display.blit(self.image, self.rect)
                         pygame.display.flip()
                     for i in range(jump_power):
+                        display.fill(color=(0, 0, 0, 255))
                         self.pos_y += 5
                         self.image = pygame.image.load(self.file_path_global)
                         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                         display.blit(self.image, self.rect)
                         pygame.display.flip()
-                else:
-                    if button == self.right:
-                        for i in range(jump_power):
-                            self.pos_y -= 5
-                            self.pos_x += 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-                        for i in range(jump_power):
-                            self.pos_y += 5
-                            self.pos_x += 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-
 
 class Video:
     def __init__(self, path):
