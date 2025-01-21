@@ -46,44 +46,31 @@ class Player(pygame.sprite.Sprite):
 
     # если нажата кнопка
 
-    def movements(self, event, display, jump_power):
+    def movements(self, event, display):
         if event.type == pygame.KEYUP:
-            if event.unicode in [self.right, self.right.upper()]:
+            if event.unicode.lower() == self.right:
                 self.pos_x += 5
-            if event.unicode in [self.left, self.left.upper()]:
+            if event.unicode.lower() == self.left:
                 self.pos_x -= 5
 
         if event.type == pygame.TEXTINPUT:
-            if event.text in [self.right, self.right.upper()]:
+            if event.text.lower() == self.right:
                 self.pos_x += 5
-            if event.text in [self.left, self.left.upper()]:
+            if event.text.lower() == self.left:
                 self.pos_x -= 5
 
+        if event.type == pygame.KEYUP:
+            if event.unicode.lower() == self.up:
+                return True
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
         display.blit(self.image, self.rect)
         pygame.display.flip()
 
-        if event.type == pygame.KEYUP:
-            if event.unicode in [self.up, self.up.upper()]:
-                display.fill(color=(0, 0, 0, 255))
-                counter = 0
-                second_button = False
-                if event.unicode.lower() == self.up:
-                    for i in range(jump_power):
-                        display.fill(color=(0, 0, 0, 255))
-                        self.pos_y -= 5
-                        self.image = pygame.image.load(self.file_path_global)
-                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                        display.blit(self.image, self.rect)
-                        pygame.display.flip()
-                    for i in range(jump_power):
-                        display.fill(color=(0, 0, 0, 255))
-                        self.pos_y += 5
-                        self.image = pygame.image.load(self.file_path_global)
-                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                        display.blit(self.image, self.rect)
-                        pygame.display.flip()
+    def jump(self, event, display, jump_power, second_button):
+        pass
+
+
 
 class Video:
     def __init__(self, path):
