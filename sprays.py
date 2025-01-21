@@ -72,10 +72,14 @@ class Player(pygame.sprite.Sprite):
                 for event in pygame.event.get():
                     if counter != 40:
                         counter += 1
-                        if event.type == pygame.KEYUP:
-                            if event.unicode in [self.up, self.up.upper()] or event.unicode in [self.up, self.up.upper()]:
-                                second_button = True
-                                button = event.unicode.lower()
+
+                    if event.type == pygame.KEYUP:
+                        if event.unicode in [self.up, self.up.upper()] or event.unicode in [self.up, self.up.upper()]:
+                            second_button = True
+                            button = event.unicode.lower()
+
+                    if counter == 40:
+                        break
                 if not second_button:
                     for i in range(jump_power):
                         self.pos_y -= 5
