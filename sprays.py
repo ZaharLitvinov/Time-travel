@@ -52,12 +52,20 @@ class Player(pygame.sprite.Sprite):
                 self.pos_x += 5
             if event.unicode.lower() == self.left:
                 self.pos_x -= 5
+            self.image = pygame.image.load(self.file_path_global)
+            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+            display.blit(self.image, self.rect)
+            pygame.display.flip()
 
         if event.type == pygame.TEXTINPUT:
             if event.text.lower() == self.right:
                 self.pos_x += 5
             if event.text.lower() == self.left:
                 self.pos_x -= 5
+            self.image = pygame.image.load(self.file_path_global)
+            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+            display.blit(self.image, self.rect)
+            pygame.display.flip()
 
         if event.type == pygame.KEYUP:
             if event.unicode.lower() == self.up:
@@ -75,10 +83,6 @@ class Player(pygame.sprite.Sprite):
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
                     pygame.display.flip()
-        self.image = pygame.image.load(self.file_path_global)
-        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-        display.blit(self.image, self.rect)
-        pygame.display.flip()
 
 
 class Video:
