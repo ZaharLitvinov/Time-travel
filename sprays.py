@@ -61,32 +61,24 @@ class Player(pygame.sprite.Sprite):
 
         if event.type == pygame.KEYUP:
             if event.unicode.lower() == self.up:
-                return True
+                for i in range(5):
+                    display.fill(color=(0, 0, 0, 255))
+                    self.pos_y -= 5
+                    self.image = pygame.image.load(self.file_path_global)
+                    self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                    display.blit(self.image, self.rect)
+                    pygame.display.flip()
+                for i in range(5):
+                    display.fill(color=(0, 0, 0, 255))
+                    self.pos_y += 5
+                    self.image = pygame.image.load(self.file_path_global)
+                    self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                    display.blit(self.image, self.rect)
+                    pygame.display.flip()
         self.image = pygame.image.load(self.file_path_global)
         self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
         display.blit(self.image, self.rect)
         pygame.display.flip()
-
-    def jump(self, display, jump_power, second_button):
-        if len(second_button) == 0:
-
-            for i in range(jump_power):
-                display.fill(color=(0, 0, 0, 255))
-                self.pos_y += 5
-                self.image = pygame.image.load(self.file_path_global)
-                self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                display.blit(self.image, self.rect)
-                pygame.display.flip()
-            for i in range(jump_power):
-                display.fill(color=(0, 0, 0, 255))
-                self.pos_y -= 5
-                self.image = pygame.image.load(self.file_path_global)
-                self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                display.blit(self.image, self.rect)
-                pygame.display.flip()
-        elif 1==2:
-            pass
-
 
 
 class Video:
