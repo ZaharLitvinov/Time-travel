@@ -48,6 +48,7 @@ while running:
                         game = True
                         start_window = False
 
+
                 # Проверка Кнопки настроек
                 if settings_button.click("sprays\\button\\настройки_2.png", mouse_pos_x, mouse_pos_y):  # добавляем текст если мы в размерах кнопки
                     # Нажата кнопка закрывает этот файл закрываем, а с настройками запускаем
@@ -66,12 +67,13 @@ while running:
             screen.blit(playful_button.image, playful_button.rect)
             screen.blit(settings_button.image, settings_button.rect)
             screen.blit(exit_button.image, exit_button.rect)
+            if not start_window:
+                screen.fill(color=(0, 0, 0, 255))
 
         if game:
 
-            screen.fill(color=(0, 0, 0, 255))
+            egypt = True
             if egypt:
-                print(event)
                 main_hero.movements(event, screen)
 
         pygame.display.flip()

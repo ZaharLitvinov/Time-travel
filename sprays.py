@@ -52,6 +52,7 @@ class Player(pygame.sprite.Sprite):
                 self.pos_x += 5
             if event.unicode.lower() == self.left:
                 self.pos_x -= 5
+            display.fill(color=(0, 0, 0, 255))
             self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
@@ -62,6 +63,7 @@ class Player(pygame.sprite.Sprite):
                 self.pos_x += 5
             if event.text.lower() == self.left:
                 self.pos_x -= 5
+            display.fill(color=(0, 0, 0, 255))
             self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
