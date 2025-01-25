@@ -75,6 +75,7 @@ while running:
             egypt = True
             if egypt:
                 main_hero.movements(event, screen)
+                main_hero.speak()
 
         pygame.display.flip()
         pygame.time.Clock().tick(360)

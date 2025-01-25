@@ -86,6 +86,10 @@ class Player(pygame.sprite.Sprite):
                     display.blit(self.image, self.rect)
                     pygame.display.flip()
 
+    def speak(self, text):
+        self.image = pygame.image.load(r"sprays\button\облочко.png")
+        self.rect = self.image.get_rect(center=(self.pos_x-50, self.pos_y-50))
+
 
 class Video:
     def __init__(self, path):
