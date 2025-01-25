@@ -52,44 +52,43 @@ class Player(pygame.sprite.Sprite):
                 self.pos_x += 5
             if event.unicode.lower() == self.left:
                 self.pos_x -= 5
-            display.fill(color=(0, 0, 0, 255))
+
             self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
             pygame.display.flip()
 
-        if event.type == pygame.TEXTINPUT:
-            if event.text.lower() == self.right:
-                self.pos_x += 5
-            if event.text.lower() == self.left:
-                self.pos_x -= 5
-            display.fill(color=(0, 0, 0, 255))
-            self.image = pygame.image.load(self.file_path_global)
-            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-            display.blit(self.image, self.rect)
-            pygame.display.flip()
+        else:
+            if event.type == pygame.TEXTINPUT:
+                if event.text.lower() == self.right:
+                    self.pos_x += 5
+                if event.text.lower() == self.left:
+                    self.pos_x -= 5
+                self.image = pygame.image.load(self.file_path_global)
+                self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                display.blit(self.image, self.rect)
+                pygame.display.flip()
 
-        if event.type == pygame.KEYUP:
-            if event.unicode.lower() == self.up:
-                for i in range(5):
-                    display.fill(color=(0, 0, 0, 255))
-                    self.pos_y -= 5
-                    self.image = pygame.image.load(self.file_path_global)
+            else:
+                if event.type == pygame.KEYUP:
+                    if event.unicode.lower() == self.up:
+                        for i in range(5):
+
+                            self.pos_y -= 5
+                            self.image = pygame.image.load(self.file_path_global)
+                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                            display.blit(self.image, self.rect)
+                            pygame.display.flip()
+                        for i in range(5):
+
+                            self.pos_y += 5
+                            self.image = pygame.image.load(self.file_path_global)
+                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                            display.blit(self.image, self.rect)
+                            pygame.display.flip()
+                else:
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
-                    pygame.display.flip()
-                for i in range(5):
-                    display.fill(color=(0, 0, 0, 255))
-                    self.pos_y += 5
-                    self.image = pygame.image.load(self.file_path_global)
-                    self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                    display.blit(self.image, self.rect)
-                    pygame.display.flip()
-
-    def speak(self, text):
-        self.image = pygame.image.load(r"sprays\button\облочко.png")
-        self.rect = self.image.get_rect(center=(self.pos_x-50, self.pos_y-50))
-
 
 class Video:
     def __init__(self, path):

@@ -21,7 +21,6 @@ exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((size
 main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
 
 # запуск фона
-
 original_background = pygame.image.load('sprays\\backgrounds\\original background.png')
 
 # основной цикл
@@ -74,9 +73,10 @@ while running:
 
             egypt = True
             if egypt:
+                screen.fill(color=(0, 0, 0, 255))
                 main_hero.movements(event, screen)
-                main_hero.speak()
 
         pygame.display.flip()
-        pygame.time.Clock().tick(360)
+        pygame.time.Clock().tick(60)
+
 pygame.quit()
