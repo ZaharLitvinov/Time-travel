@@ -89,6 +89,26 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
+class Speech(pygame.sprite.Sprite):
+    def __init__(self, file_path, pos_x, pos_y, personage, personage_height, personage_width):
+        pygame.sprite.Sprite.__init__(self)
+        self.file_path = file_path
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.personage_height = personage_height
+        self.personage_width = personage_width
+        self.personage = personage
+        self.image = 0
+        self.rect = 0
+
+    def draw(self):
+        self.image = pygame.image.load(self.file_path)
+        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+        font = pygame.font.SysFont("comicsansms", 75)
+
+        text = font.render("Hello, World", True, (128, 128, 200))
+
+
 
 class Video:
     def __init__(self, path):
