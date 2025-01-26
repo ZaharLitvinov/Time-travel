@@ -1,24 +1,28 @@
 import pygame
 
+# Инициализация Pygame
 pygame.init()
-screen = pygame.display.set_mode((640, 480))
-clock = pygame.time.Clock()
-done = False
 
-font = pygame.font.SysFont("comicsansms", 75)
+# Установка шрифта
+font = pygame.font.Font(None, 36)
 
-text = font.render("Hello, World", True, (128, 128, 200))
+# Создание текста с переносом
+text_lines = ["Это первая строка.", "Это вторая строка.", "Это третья строка."]
+screen = pygame.display.set_mode((800, 600))
 
-while not done:
+running = True
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            done = True
+            running = False
 
-    screen.fill((255, 255, 255))
-    screen.blit(text,
-                (320 - text.get_width() // 2, 240 - text.get_height() // 2))
+    screen.fill((255, 255, 255))  # Заполняем фон белым цветом
 
-    pygame.display.flip()
-    clock.tick(60)
+    # Отображаем каждую строку текста
+    for i, line in enumerate(text_lines):
+        text_surface = font.render(line, True, (0, 0, 0))  # Создаем поверхность текста
+        screen.blit(text_surface, (50, 50 + i * 40))  # Отображаем текст с отступом
+
+    pygame.display.flip()  # Обновляем экран
+
+pygame.quit()

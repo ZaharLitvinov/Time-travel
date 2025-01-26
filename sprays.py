@@ -89,26 +89,38 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
+
 class Speech(pygame.sprite.Sprite):
-    def __init__(self, file_path, pos_x, pos_y, personage, personage_height, personage_width):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.file_path = file_path
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.personage_height = personage_height
-        self.personage_width = personage_width
-        self.personage = personage
-        self.image = 0
-        self.rect = 0
+        self.pos_x = 200
+        self.pos_y = 200
 
-    def draw(self):
-        self.image = pygame.image.load(self.file_path)
-        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-        font = pygame.font.SysFont("comicsansms", 75)
+    def draw(self, text_t, personage, personage_height, personage_width, display):
+        # изменяем текст
+        counter = 1
+        text_finite = []
+        for i in text_t.split():
+            if counter % 5 == 0 and counter != 1:
+                text_finite.append(i + '\n')
+            else:
+                text_finite.append(i)
+            counter += 1
 
-        text = font.render("Hello, World", True, (128, 128, 200))
+        font = pygame.font.SysFont("comicsansms", 15)
 
+        text = (' '.join(text_finite)).split('\n')
+        self.pos_x = personage.pos_x - personage_width
+        self.pos_y = personage.pos_y - personage_height
 
+        # рисуем
+        print(self)
+        pygame.display.flip()
+        print(text)
+        for i, line in enumerate(text):
+            text_surface = font.render(line, True, (0, 0, 0))  # Создаем поверхность текста
+            display.blit(text_surface, (self.pos_x, self.pos_y + i * 15))  # Отображаем текст с отступом
+        pygame.display.flip()
 
 class Video:
     def __init__(self, path):

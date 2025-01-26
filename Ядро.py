@@ -17,8 +17,8 @@ settings_button = sprays.Sprite_button("sprays\\button\\настройки_1.png
 exit_button = sprays.Sprite_button("sprays\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
 # Персонаж
-
 main_hero = sprays.Player('sprays\\characters\\daniil_stepanov.png', 200, 200)
+text = sprays.Speech()
 
 # запуск фона
 original_background = pygame.image.load('sprays\\backgrounds\\original background.png')
@@ -73,8 +73,9 @@ while running:
 
             egypt = True
             if egypt:
-                screen.fill(color=(0, 0, 0, 255))
+                screen.fill(color=(255, 255, 255, 255))
                 main_hero.movements(event, screen)
+                text.draw('Что за артефакт я нашел, Луна? Он кажется невероятно мощным.', main_hero, 65, 105, screen)
 
         pygame.display.flip()
         pygame.time.Clock().tick(60)
