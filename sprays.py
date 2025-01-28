@@ -92,9 +92,8 @@ class Player(pygame.sprite.Sprite):
 
 class Speech(pygame.sprite.Sprite):
     def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.pos_x = 200
-        self.pos_y = 200
+        self.pos_x = 222
+        self.pos_y = 222
 
     def draw(self, text_t, personage, personage_height, personage_width, display):
         # изменяем текст
@@ -112,9 +111,6 @@ class Speech(pygame.sprite.Sprite):
         text = (' '.join(text_finite)).split('\n')
         self.pos_x = personage.pos_x - personage_width
         self.pos_y = personage.pos_y - personage_height
-
-        # рисуем
-        pygame.display.flip()
         for i, line in enumerate(text):
             text_surface = font.render(line, True, (0, 0, 0))  # Создаем поверхность текста
             display.blit(text_surface, (self.pos_x, self.pos_y + i * 15))  # Отображаем текст с отступом
