@@ -46,49 +46,51 @@ class Player(pygame.sprite.Sprite):
 
     # если нажата кнопка
 
-    def movements(self, event, display):
-        if event.type == pygame.KEYUP:
-            if event.unicode.lower() == self.right:
-                self.pos_x += 5
-            if event.unicode.lower() == self.left:
-                self.pos_x -= 5
-
-            self.image = pygame.image.load(self.file_path_global)
+    def movements(self, event, display, prohibition=True):
+        if not prohibition:
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
-            pygame.display.flip()
-
         else:
-            if event.type == pygame.TEXTINPUT:
-                if event.text.lower() == self.right:
+            if event.type == pygame.KEYUP:
+                if event.unicode.lower() == self.right:
                     self.pos_x += 5
-                if event.text.lower() == self.left:
+                if event.unicode.lower() == self.left:
                     self.pos_x -= 5
+
                 self.image = pygame.image.load(self.file_path_global)
                 self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                 display.blit(self.image, self.rect)
                 pygame.display.flip()
 
             else:
-                if event.type == pygame.KEYUP:
-                    if event.unicode.lower() == self.up:
-                        for i in range(5):
-
-                            self.pos_y -= 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-                        for i in range(5):
-
-                            self.pos_y += 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-                else:
+                if event.type == pygame.TEXTINPUT:
+                    if event.text.lower() == self.right:
+                        self.pos_x += 5
+                    if event.text.lower() == self.left:
+                        self.pos_x -= 5
+                    self.image = pygame.image.load(self.file_path_global)
                     self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                     display.blit(self.image, self.rect)
+                    pygame.display.flip()
+
+            if event.type == pygame.KEYUP:
+                if event.unicode.lower() == self.up:
+                    for i in range(5):
+                        self.pos_y -= 5
+                        self.image = pygame.image.load(self.file_path_global)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(self.image, self.rect)
+                        pygame.display.flip()
+                    for i in range(5):
+                        self.pos_y += 5
+                        self.image = pygame.image.load(self.file_path_global)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(self.image, self.rect)
+                        pygame.display.flip()
+
+            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+            display.blit(self.image, self.rect)
+            pygame.display.flip()
 
 class Speech(pygame.sprite.Sprite):
     def __init__(self):
@@ -107,12 +109,11 @@ class Speech(pygame.sprite.Sprite):
             counter += 1
 
         font = pygame.font.SysFont("comicsansms", 15)
-
         text = (' '.join(text_finite)).split('\n')
         self.pos_x = personage.pos_x - personage_width
-        self.pos_y = personage.pos_y - personage_height
+        self.pos_y = personage.pos_y - (len(text_finite) * 5)
         for i, line in enumerate(text):
-            text_surface = font.render(line, True, (0, 0, 0))  # Создаем поверхность текста
+            text_surface = font.render(line, True, (255, 255, 255))  # Создаем поверхность текста
             display.blit(text_surface, (self.pos_x, self.pos_y + i * 15))  # Отображаем текст с отступом
         pygame.display.flip()
 
