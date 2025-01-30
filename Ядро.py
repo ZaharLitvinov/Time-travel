@@ -17,9 +17,9 @@ settings_button = sprays.Sprite_button("sprites\\button\\настройки_1.pn
 exit_button = sprays.Sprite_button("sprites\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
 # Персонаж
-main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450,    )  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350)  # Луна
-kira = sprays.Player('sprites\\characters\\кира\\1643264686_2-abrakadabra-fun-p-pikselnii-pers-3 (2) (0_0).png', 500, 450)  # Кира
+main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64)  # Даниил
+moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100,)  # Луна
+kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59)  # Кира
 
 # Разговор
 text = sprays.Speech()
@@ -83,7 +83,7 @@ while running:
                 main_hero.movements(event, screen, False)
                 moon.movements(event, screen)
                 kira.movements(event, screen)
-                text.draw('Что за артефакт я нашел, Луна? Он кажется невероятно мощным', main_hero, 47, 64, screen)
+                text.draw('Что за артефакт я нашел, Луна? Он кажется невероятно мощным', main_hero, main_hero.height, main_hero.width, screen)
                 pygame.display.flip()
                 pygame.time.delay(5000)
 
@@ -91,7 +91,7 @@ while running:
                 main_hero.movements(event, screen, False)
                 moon.movements(event, screen)
                 kira.movements(event, screen)
-                text.draw('Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.', moon, 100, 100, screen)
+                text.draw('Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.', moon, moon.height, moon.width, screen)
                 pygame.display.flip()
                 pygame.time.delay(15000)
 
@@ -99,16 +99,24 @@ while running:
                 main_hero.movements(event, screen, False)
                 moon.movements(event, screen)
                 kira.movements(event, screen)
-                text.draw('Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.', main_hero, 47, 64, screen)
+                text.draw('Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.', main_hero, main_hero.height, main_hero.width, screen)
                 pygame.display.flip()
-                pygame.time.delay(5000)
+                pygame.time.delay(15000)
+                screen.blit(original_background, (0, 0))
+                main_hero.movements(event, screen, False)
+                moon.movements(event, screen)
+                kira.movements(event, screen)
+                text.draw('Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.',
+                          main_hero, main_hero.height, main_hero.width, screen)
+                pygame.display.flip()
+                pygame.time.delay(15000)
 
                 screen.blit(original_background, (0, 0))
                 main_hero.movements(event, screen, False)
                 moon.movements(event, screen)
                 kira.movements(event, screen)
                 text.draw('Разве ты не любишь разгадывать головоломки? Уверена, что у тебя получится! Даниил, с твоими навыками и знаниями о кибернетике мы сможем создать нечто удивительное.',
-                          kira, 171, 259, screen)
+                          kira, kira.height, kira.width, screen)
                 pygame.display.flip()
                 pygame.time.delay(5000)
                 prehistory = False
