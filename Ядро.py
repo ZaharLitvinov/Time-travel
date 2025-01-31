@@ -32,6 +32,7 @@ start_window = True
 game = False
 egypt = False
 prehistory = True
+settings = False
 counter = 0
 p_l =pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
@@ -60,6 +61,7 @@ while running:
                     # Нажата кнопка закрывает этот файл закрываем, а с настройками запускаем
 
                     if event.type == pygame.MOUSEBUTTONUP:
+                        settings = True
                         start_window = False
 
                 # Проверка Кнопки выход
@@ -163,6 +165,9 @@ while running:
                 counter += 1
             if egypt:
                 screen.fill(color=(255, 255, 255, 255))
+        if settings:
+            pass
+
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 
