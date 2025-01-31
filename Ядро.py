@@ -17,9 +17,9 @@ settings_button = sprays.Sprite_button("sprites\\button\\настройки_1.pn
 exit_button = sprays.Sprite_button("sprites\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
 
 # Персонаж
-main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64)  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100,)  # Луна
-kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59)  # Кира
+main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, True)  # Даниил
+moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False)  # Луна
+kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False)  # Кира
 
 # Разговор
 text = sprays.Speech()
@@ -32,7 +32,9 @@ start_window = True
 game = False
 egypt = False
 prehistory = True
-
+counter = 0
+p_l =pygame.USEREVENT + 25
+pygame.time.set_timer(p_l, 10)
 while running:
     for event in pygame.event.get():
 
@@ -75,55 +77,93 @@ while running:
                 screen.fill(color=(0, 0, 0, 255))
 
         if game:
-            if prehistory:
-                original_background = pygame.image.load('sprites\\backgrounds\\background_dark.jpg')
-                sizes_x, sizes_y = 800, 600  # по размерам изображения
-                screen = pygame.display.set_mode((sizes_x, sizes_y))
-                screen.blit(original_background, (0, 0))
-                main_hero.movements(event, screen, False)
-                moon.movements(event, screen)
-                kira.movements(event, screen)
-                text.draw('Что за артефакт я нашел, Луна? Он кажется невероятно мощным', main_hero, main_hero.height, main_hero.width, screen)
-                pygame.display.flip()
-                pygame.time.delay(5000)
+            if prehistory and (pygame.mouse.get_focused() or event.type == p_l):
+                text_t = ['Что за артефакт я нашел, Луна? Он кажется невероятно мощным',
+                          'Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.',
+                          'Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.',
+                          'Разве ты не любишь разгадывать головоломки? Уверена, что у тебя получится! Даниил, с твоими навыками и знаниями о кибернетике мы сможем создать нечто удивительное.',
+                          'Но для этого нам нужно понимание временных механизмов. Как я могу перенастроить амулет, чтобы он не раскрылся в самых неподходящих моментах?',
+                          'Я могу подсказать, как вписать его в наш кибернетический интерфейс. Сначала нам нужно сохранить его в защищенной среде, пока мы выясним, как работают потоки времени.',
+                          'Будьте осторожны. Время — это не линейная стрела, а ткань. Каждое ваше действие может изменить ход истории.',
+                          'Пора начать. Давайте откроем эту новую эру вместе!'
+                          ]
+                if counter == 0:
+                    original_background = pygame.image.load('sprites\\backgrounds\\background_dark.jpg')
+                    sizes_x, sizes_y = 800, 600  # по размерам изображения
+                    screen = pygame.display.set_mode((sizes_x, sizes_y))
+                    i = 50
+                if counter <= 5 * i:
 
-                screen.blit(original_background, (0, 0))
-                main_hero.movements(event, screen, False)
-                moon.movements(event, screen)
-                kira.movements(event, screen)
-                text.draw('Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.', moon, moon.height, moon.width, screen)
-                pygame.display.flip()
-                pygame.time.delay(15000)
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[0], main_hero, main_hero.height, main_hero.width, screen)
+                    pygame.display.flip()
 
-                screen.blit(original_background, (0, 0))
-                main_hero.movements(event, screen, False)
-                moon.movements(event, screen)
-                kira.movements(event, screen)
-                text.draw('Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.', main_hero, main_hero.height, main_hero.width, screen)
-                pygame.display.flip()
-                pygame.time.delay(15000)
-                screen.blit(original_background, (0, 0))
-                main_hero.movements(event, screen, False)
-                moon.movements(event, screen)
-                kira.movements(event, screen)
-                text.draw('Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.',
-                          main_hero, main_hero.height, main_hero.width, screen)
-                pygame.display.flip()
-                pygame.time.delay(15000)
+                if 5 * i < counter <= 20 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[1], moon, moon.height, moon.width, screen)
+                    pygame.display.flip()
 
-                screen.blit(original_background, (0, 0))
-                main_hero.movements(event, screen, False)
-                moon.movements(event, screen)
-                kira.movements(event, screen)
-                text.draw('Разве ты не любишь разгадывать головоломки? Уверена, что у тебя получится! Даниил, с твоими навыками и знаниями о кибернетике мы сможем создать нечто удивительное.',
-                          kira, kira.height, kira.width, screen)
-                pygame.display.flip()
-                pygame.time.delay(5000)
-                prehistory = False
-                egypt = True
+                if 20 * i < counter <= 35 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[2], main_hero, main_hero.height, main_hero.width, screen)
+                    pygame.display.flip()
+
+                if 35 * i < counter <= 50 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[3], kira, kira.height, kira.width, screen)
+                    pygame.display.flip()
+
+                if 50 * i < counter <= 65 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[4], main_hero, main_hero.height, main_hero.width, screen)
+                    pygame.display.flip()
+
+                if 65 * i < counter <= 75 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[5], kira, kira.height, kira.width, screen)
+                    pygame.display.flip()
+
+                if 75 * i < counter <= 90 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[6], moon, moon.height, moon.width, screen)
+                    pygame.display.flip()
+
+                if 95 * i < counter <= 110 * i:
+                    screen.blit(original_background, (0, 0))
+                    main_hero.movements(event, screen, True)
+                    moon.movements(event, screen, True)
+                    kira.movements(event, screen, True)
+                    text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
+                    pygame.display.flip()
+
+                if counter == (110 * i) + 1:
+                    prehistory = False
+                    egypt = True
+                counter += 1
             if egypt:
                 screen.fill(color=(255, 255, 255, 255))
         pygame.display.flip()
-        pygame.time.Clock().tick(60)
+        pygame.time.Clock().tick(360)
 
 pygame.quit()
