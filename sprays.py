@@ -96,6 +96,22 @@ class Player(pygame.sprite.Sprite):
                             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                             display.blit(self.image, self.rect)
                             pygame.display.flip()
+            else:
+                if event.type == pygame.KEYUP:
+
+                    if event.unicode.lower() == self.right:
+
+                        for i in range(self.number_of_elements):
+                            file_path = self.pravo_animation[i]
+                            self.pos_x += (5/self.number_of_elements)
+
+                            self.image = pygame.image.load(file_path)
+                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                            display.blit(self.image, self.rect)
+                            pygame.display.flip()
+
+                    if event.unicode.lower() == self.left:
+                        self.pos_x -= 5
 
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)

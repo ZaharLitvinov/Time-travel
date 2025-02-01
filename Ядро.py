@@ -42,8 +42,8 @@ main_hero_animation_levo = ['sprites\\characters\\даниил\\даниил_в�
 # Персонаж
 main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo
                           )  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, True)  # Луна
-kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, True)  # Кира
+moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, True, 0, 0, 0)  # Луна
+kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, True, 0, 0, 0)  # Кира
 
 # Разговор
 text = sprays.Speech()
@@ -214,9 +214,7 @@ while running:
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
                 if counter > 466:
-                    print(event)
                     main_hero.movements(event, screen)
-                    print(event)
                 counter += 1
 
         if settings:
