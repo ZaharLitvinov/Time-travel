@@ -1,5 +1,6 @@
-from traceback import print_tb
-
+import pygame_widgets
+import time
+from pygame_widgets.progressbar import ProgressBar
 import pygame
 import sprays
 
@@ -27,7 +28,7 @@ text = sprays.Speech()
 # запуск фона
 original_background = pygame.image.load('sprites\\backgrounds\\original background.png')
 
-# основной цикл
+# Флаги и таймер
 start_window = True
 game = False
 egypt = False
@@ -36,6 +37,9 @@ settings = False
 counter = 0
 p_l =pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
+
+
+# основной цикл
 while running:
     for event in pygame.event.get():
 
@@ -162,9 +166,30 @@ while running:
                 if counter == (135 * i) + 1:
                     prehistory = False
                     egypt = True
-                counter += 1
+                    counter = 0
+                else:
+                    counter += 1
             if egypt:
-                screen.fill(color=(255, 255, 255, 255))
+                if counter == 0:
+                    original_background = pygame.image.load('sprites\\backgrounds\\egypt_background (2).png')
+                    sizes_x, sizes_y = 1340, 890  # по размерам изображения
+                    screen = pygame.display.set_mode((sizes_x, sizes_y))
+                    i = 50
+                    # Прогр ес бар
+                    startTime = time.time()
+                    progressBar = ProgressBar(screen, 370, 715, 500, 40, lambda: 1 - (time.time() - startTime) / 10,
+                                              curved=True)
+                screen.blit(original_background, (0, 0))
+                if counter <= 465:
+                    pygame_widgets.update(event)
+                    pygame.display.update()
+                if counter == 466:
+                    original_background = pygame.image.load('sprites\\backgrounds\\first_egypt_background.PNG')
+                    sizes_x, sizes_y = 1456, 816  # по размерам изображения
+                    screen = pygame.display.set_mode((sizes_x, sizes_y))
+                    i = 50
+                counter += 1
+
         if settings:
             pass
 
