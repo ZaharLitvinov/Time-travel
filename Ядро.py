@@ -213,14 +213,15 @@ while running:
                     sizes_x, sizes_y = 1456, 816  # по размерам изображения
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
+                if counter < 467:
+                    counter += 1
                 if counter > 466:
-                    main_hero.movements(event, screen)
-                counter += 1
-
+                    main_hero.movements(event, screen, original_background)
+                    pygame.time.delay(1)
         if settings:
             pass
 
         pygame.display.flip()
-        pygame.time.Clock().tick(360)
+        pygame.time.Clock().tick(400)
 
 pygame.quit()
