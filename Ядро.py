@@ -16,11 +16,34 @@ running = True
 playful_button = sprays.Sprite_button("sprites\\button\\старт_1.png", int(sizes_x // 3), int(sizes_y // 2), 117, 130)
 settings_button = sprays.Sprite_button("sprites\\button\\настройки_1.png", int((sizes_x // 3) * 2), int(sizes_y // 2), 120, 120)
 exit_button = sprays.Sprite_button("sprites\\button\\выход_1.png", int((sizes_x // 3) * 1.5), int((sizes_y // 2) * 1.5), 118, 116)
+# Анимация сылки
+main_hero_animation_pravo = ['sprites\\characters\\даниил\\даниил_вправо\\1.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\2.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\3.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\4.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\5.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\6.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\7.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\8.png',
+                             'sprites\\characters\\даниил\\даниил_вправо\\9.png',
+                              ]
+
+main_hero_animation_levo = ['sprites\\characters\\даниил\\даниил_влево\\1.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\2.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\3.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\4.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\5.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\6.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\7.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\8.png',
+                            'sprites\\characters\\даниил\\даниил_влево\\9.png',
+                            ]
 
 # Персонаж
-main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, True)  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False)  # Луна
-kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False)  # Кира
+main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo
+                          )  # Даниил
+moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, True)  # Луна
+kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, True)  # Кира
 
 # Разговор
 text = sprays.Speech()
@@ -163,7 +186,7 @@ while running:
                     text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
-                if counter == (135 * i) + 1:
+                if counter == (0 * i) + 1:
                     prehistory = False
                     egypt = True
                     counter = 0
@@ -179,15 +202,21 @@ while running:
                     startTime = time.time()
                     progressBar = ProgressBar(screen, 370, 715, 500, 40, lambda: 1 - (time.time() - startTime) / 10,
                                               curved=True)
+                    main_hero.pos_y = 685
                 screen.blit(original_background, (0, 0))
                 if counter <= 465:
                     pygame_widgets.update(event)
                     pygame.display.update()
                 if counter == 466:
+                    progressBar = 0
                     original_background = pygame.image.load('sprites\\backgrounds\\first_egypt_background.PNG')
                     sizes_x, sizes_y = 1456, 816  # по размерам изображения
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
+                if counter > 466:
+                    print(event)
+                    main_hero.movements(event, screen)
+                    print(event)
                 counter += 1
 
         if settings:
