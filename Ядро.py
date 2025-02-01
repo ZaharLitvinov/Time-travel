@@ -39,12 +39,17 @@ main_hero_animation_levo = ['sprites\\characters\\даниил\\даниил_в�
                             'sprites\\characters\\даниил\\даниил_влево\\9.png',
                             ]
 
-# Персонаж
-main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo
-                          )  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, True, 0, 0, 0)  # Луна
-kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, True, 0, 0, 0)  # Кира
+citizen_animation_pravo = ['sprites\\characters\\житель\\житель_вправо\\1.png',
+                           'sprites\\characters\\житель\\житель_вправо\\2.png',
+                           'sprites\\characters\\житель\\житель_вправо\\3.png',
+                           'sprites\\characters\\житель\\житель_вправо\\4.png',
+                           ]
 
+# Персонаж
+main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo)  # Даниил
+moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False, 0, 0, 0)  # Луна
+kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False, 0, 0, 0)  # Кира
+citizen = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 685, 200, 72, 100, False, 4, )
 # Разговор
 text = sprays.Speech()
 

@@ -164,6 +164,7 @@ class Player(pygame.sprite.Sprite):
                                 if counter == self.number_of_elements:
                                     break
 
+            self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
             pygame.display.flip()
