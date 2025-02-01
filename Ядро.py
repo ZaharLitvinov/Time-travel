@@ -44,12 +44,19 @@ citizen_animation_pravo = ['sprites\\characters\\житель\\житель_вп
                            'sprites\\characters\\житель\\житель_вправо\\3.png',
                            'sprites\\characters\\житель\\житель_вправо\\4.png',
                            ]
+citizen_animation_levo = ['sprites\\characters\\житель\\житель_влево\\1.png',
+                          'sprites\\characters\\житель\\житель_влево\\2.png',
+                          'sprites\\characters\\житель\\житель_влево\\3.png',
+                          'sprites\\characters\\житель\\житель_влево\\4.png',
+                           ]
 
 # Персонаж
 main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo)  # Даниил
 moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False, 0, 0, 0)  # Луна
 kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False, 0, 0, 0)  # Кира
-citizen = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 685, 200, 72, 100, False, 4, )
+citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
+citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
+citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
 # Разговор
 text = sprays.Speech()
 
@@ -197,7 +204,12 @@ while running:
                     counter = 0
                 else:
                     counter += 1
+
             if egypt:
+                text_t = ['Слышал, что фараон собирает армию, чтобы завоевать соседние земли!',
+                          'Да, но у него есть другие проблемы. Новый закон требует жертву для богов. Люди боятся!',
+                          'Надеюсь, это не коснется нас! Мы просто хотим жить мирно.',
+                          '']
                 if counter == 0:
                     original_background = pygame.image.load('sprites\\backgrounds\\egypt_background (2).png')
                     sizes_x, sizes_y = 1340, 890  # по размерам изображения
@@ -218,15 +230,19 @@ while running:
                     sizes_x, sizes_y = 1456, 816  # по размерам изображения
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
-                if counter < 467:
-                    counter += 1
+
                 if counter > 466:
                     main_hero.movements(event, screen, original_background)
-                    pygame.time.delay(1)
+                if 466 <= counter <= 481 * i:
+                    screen.blit(citizen_1.image, citizen_1.rect)
+                    screen.blit(citizen_2.image, citizen_2.rect)
+                    screen.blit(citizen_3.image, citizen_3.rect)
+                    pygame.display.flip()
+                counter += 1
         if settings:
             pass
 
         pygame.display.flip()
-        pygame.time.Clock().tick(400)
+        pygame.time.Clock().tick(360)
 
 pygame.quit()

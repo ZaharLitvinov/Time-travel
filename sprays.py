@@ -112,7 +112,7 @@ class Player(pygame.sprite.Sprite):
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
                             pygame.display.flip()
-                            if counter == self.number_of_elements:
+                            if counter == self.number_of_elements // 50:
                                 break
 
                     if event.unicode.lower() == self.left:
@@ -128,7 +128,7 @@ class Player(pygame.sprite.Sprite):
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
                             pygame.display.flip()
-                            if counter == self.number_of_elements:
+                            if counter == self.number_of_elements // 50:
                                 break
                 else:
                     if event.type == pygame.TEXTINPUT:
@@ -145,7 +145,7 @@ class Player(pygame.sprite.Sprite):
                                 display.blit(background, (0, 0))
                                 display.blit(self.image, self.rect)
                                 pygame.display.flip()
-                                if counter == self.number_of_elements:
+                                if counter == self.number_of_elements // 50:
                                     break
 
                         if event.text.lower() == self.left:
@@ -161,7 +161,7 @@ class Player(pygame.sprite.Sprite):
                                 display.blit(background, (0, 0))
                                 display.blit(self.image, self.rect)
                                 pygame.display.flip()
-                                if counter == self.number_of_elements:
+                                if counter == self.number_of_elements // 50:
                                     break
 
             self.image = pygame.image.load(self.file_path_global)
