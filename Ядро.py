@@ -276,9 +276,9 @@ while running:
                     pygame.display.flip()
                 if counter >= 466 + 45 * duration:
                     screen.blit(original_background, (0, 0))
-                    citizen_1.movements(event, screen, 'd', prohibition=True)
-                    citizen_2.movements(event, screen, 'd', prohibition=True)
-                    citizen_3.movements(event, screen, 'd', prohibition=True)
+                    citizen_1.movements(event, screen, 'd')
+                    citizen_2.movements(event, screen, 'd')
+                    citizen_3.movements(event, screen, 'd')
                     main_hero.movements(event, screen, prohibition=True)
                     pygame.display.flip()
 
