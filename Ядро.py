@@ -79,7 +79,6 @@ draw = []
 while running:
     for event in pygame.event.get():
 
-
         if event.type == pygame.QUIT:
             running = False
 
@@ -207,7 +206,7 @@ while running:
                         text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
-                if counter == (135 * duration) + 1:
+                if counter == (0 * duration) + 1:
                     prehistory = False
                     egypt = True
                     counter = 0
@@ -276,9 +275,14 @@ while running:
                         text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
                 if counter >= 466 + 45 * duration:
-                    pass
+                    screen.blit(original_background, (0, 0))
+                    citizen_1.movements(event, screen, 'd', prohibition=True)
+                    citizen_2.movements(event, screen, 'd', prohibition=True)
+                    citizen_3.movements(event, screen, 'd', prohibition=True)
+                    main_hero.movements(event, screen, prohibition=True)
+                    pygame.display.flip()
 
-                if counter >= 466 + 45 * duration:
+                if counter >= 1000 + 45 * duration:
                     screen.blit(original_background, (0, 0))
                     main_hero.movements(event, screen, background=original_background, draw=draw)
 
@@ -286,8 +290,6 @@ while running:
 
         if settings:
             pass
-
-
         pygame.display.flip()
         pygame.time.Clock().tick(360)
 

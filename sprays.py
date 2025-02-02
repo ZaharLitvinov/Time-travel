@@ -54,6 +54,7 @@ class Player(pygame.sprite.Sprite):
     # если нажата кнопка
 
     def movements(self, event, display, team='',  background='', draw=[], prohibition=False):
+        print(team)
         if self.prohibition or prohibition:
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
@@ -82,12 +83,14 @@ class Player(pygame.sprite.Sprite):
                         pygame.display.flip()
 
             else:
-                if event.type == pygame.KEYUP or len(team) != 0:
-
+                print(len(team))
+                print(team)
+                if len(team) != 0 or event.type == pygame.KEYUP:
                     if event.unicode.lower() == self.right or team == self.right:
                         counter = 0
-                        for i in range(self.number_of_elements * 45):
-                            if i % 45 == 0:
+
+                        for i in range(self.number_of_elements * 30):
+                            if i % 30 == 0:
                                 file_path = self.pravo_animation[counter]
                                 self.pos_x += 5
                                 counter += 1
@@ -97,13 +100,13 @@ class Player(pygame.sprite.Sprite):
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
                             pygame.display.flip()
-                            if counter == self.number_of_elements // 45:
+                            if counter == self.number_of_elements // 30:
                                 break
 
-                    if event.unicode.lower() == self.left or team == self.left:
+                    if team == self.left or event.unicode.lower() == self.left:
                         counter = 0
-                        for i in range(self.number_of_elements * 45):
-                            if i % 45 == 0:
+                        for i in range(self.number_of_elements * 30):
+                            if i % 30 == 0:
                                 file_path = self.levo_animation[counter]
                                 self.pos_x -= 5
                                 counter += 1
@@ -113,14 +116,14 @@ class Player(pygame.sprite.Sprite):
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
                             pygame.display.flip()
-                            if counter == self.number_of_elements // 45:
+                            if counter == self.number_of_elements // 30:
                                 break
                 else:
-                    if event.type == pygame.TEXTINPUT or len(team) != 0:
+                    if len(team) != 0 or event.type == pygame.TEXTINPUT:
                         if event.text.lower() == self.right or team == self.right:
                             counter = 0
-                            for i in range(self.number_of_elements * 45):
-                                if i % 45 == 0:
+                            for i in range(self.number_of_elements * 30):
+                                if i % 30 == 0:
                                     file_path = self.pravo_animation[counter]
                                     self.pos_x += 5
                                     counter += 1
@@ -130,13 +133,13 @@ class Player(pygame.sprite.Sprite):
                                 display.blit(background, (0, 0))
                                 display.blit(self.image, self.rect)
                                 pygame.display.flip()
-                                if counter == self.number_of_elements // 45:
+                                if counter == self.number_of_elements // 30:
                                     break
 
-                        if event.text.lower() == self.left or team == self.left:
+                        if team == self.left or event.text.lower() == self.left:
                             counter = 0
-                            for i in range(self.number_of_elements * 45):
-                                if i % 45 == 0:
+                            for i in range(self.number_of_elements * 30):
+                                if i % 30 == 0:
                                     file_path = self.levo_animation[counter]
                                     self.pos_x -= 5
                                     counter += 1
@@ -146,7 +149,7 @@ class Player(pygame.sprite.Sprite):
                                 display.blit(background, (0, 0))
                                 display.blit(self.image, self.rect)
                                 pygame.display.flip()
-                                if counter == self.number_of_elements // 45:
+                                if counter == self.number_of_elements // 30:
                                     break
 
             self.image = pygame.image.load(self.file_path_global)
