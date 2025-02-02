@@ -206,7 +206,7 @@ while running:
                         text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
-                if counter == (0 * duration) + 1:
+                if counter == (135 * duration) + 1:
                     prehistory = False
                     egypt = True
                     counter = 0
