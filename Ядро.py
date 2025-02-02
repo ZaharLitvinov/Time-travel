@@ -72,6 +72,7 @@ settings = False
 counter = 0
 p_l =pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
+draw = []
 
 
 # основной цикл
@@ -134,68 +135,75 @@ while running:
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
                 if counter <= 15 * i:
-
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[0], main_hero, main_hero.height, main_hero.width, screen)
+                    if 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[0], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
                 if 15 * i < counter <= 30 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[1], moon, moon.height, moon.width, screen)
+                    if (15 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[1], moon, moon.height, moon.width, screen)
                     pygame.display.flip()
 
                 if 30 * i < counter <= 45 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[2], main_hero, main_hero.height, main_hero.width, screen)
+                    if (30 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[2], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
                 if 45 * i < counter <= 60 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[3], kira, kira.height, kira.width, screen)
+                    if (45 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[3], kira, kira.height, kira.width, screen)
                     pygame.display.flip()
 
                 if 75 * i < counter <= 90 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[4], main_hero, main_hero.height, main_hero.width, screen)
+                    if (75 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[4], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
                 if 90 * i < counter <= 105 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[5], kira, kira.height, kira.width, screen)
+                    if (90 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[5], kira, kira.height, kira.width, screen)
                     pygame.display.flip()
 
                 if 105 * i < counter <= 120 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[6], moon, moon.height, moon.width, screen)
+                    if (105 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[6], moon, moon.height, moon.width, screen)
                     pygame.display.flip()
 
                 if 120 * i < counter <= 135 * i:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, True)
-                    moon.movements(event, screen, True)
-                    kira.movements(event, screen, True)
-                    text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
+                    if (120 * i) + 1 == counter:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, True)
+                        moon.movements(event, screen, True)
+                        kira.movements(event, screen, True)
+                        text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
 
                 if counter == (0 * i) + 1:
@@ -205,7 +213,7 @@ while running:
                 else:
                     counter += 1
 
-            if egypt:
+            if egypt and (pygame.mouse.get_focused() or event.type == p_l):
                 text_t = ['Слышал, что фараон собирает армию, чтобы завоевать соседние земли!',
                           'Да, но у него есть другие проблемы. Новый закон требует жертву для богов. Люди боятся!',
                           'Надеюсь, это не коснется нас! Мы просто хотим жить мирно.',
@@ -232,13 +240,21 @@ while running:
                     i = 50
 
                 if counter > 466:
-                    main_hero.movements(event, screen, original_background)
-                if 466 <= counter <= 481 * i:
-                    screen.blit(citizen_1.image, citizen_1.rect)
-                    screen.blit(citizen_2.image, citizen_2.rect)
-                    screen.blit(citizen_3.image, citizen_3.rect)
-                    pygame.display.flip()
+                    main_hero.movements(event, screen, original_background, draw)
+
+                if 466 <= counter <= 466 + 15 * i:
+                    if 467 == counter:
+                        screen.blit(citizen_1.image, citizen_1.rect)
+                        screen.blit(citizen_2.image, citizen_2.rect)
+                        screen.blit(citizen_3.image, citizen_3.rect)
+                        text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen)
+                        draw = [citizen_1, citizen_2, citizen_3]
+                    else:
+                        if (466 + 15 * i) - 1 == counter:
+                            draw = []
+
                 counter += 1
+                print(counter)
         if settings:
             pass
 
