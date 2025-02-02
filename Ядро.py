@@ -79,6 +79,7 @@ draw = []
 while running:
     for event in pygame.event.get():
 
+
         if event.type == pygame.QUIT:
             running = False
 
@@ -228,10 +229,11 @@ while running:
                     progressBar = ProgressBar(screen, 370, 715, 500, 40, lambda: 1 - (time.time() - startTime) / 10,
                                               curved=True)
                     main_hero.pos_y = 685
-                screen.blit(original_background, (0, 0))
+
                 if counter <= 465:
                     pygame_widgets.update(event)
                     pygame.display.update()
+                    screen.blit(original_background, (0, 0))
                 if counter == 466:
                     progressBar = 0
                     original_background = pygame.image.load('sprites\\backgrounds\\first_egypt_background.PNG')
@@ -239,24 +241,59 @@ while running:
                     screen = pygame.display.set_mode((sizes_x, sizes_y))
                     i = 50
 
-                if counter > 466:
+                if counter >= 466 + 45 * i:
                     main_hero.movements(event, screen, original_background, draw)
 
                 if 466 <= counter <= 466 + 15 * i:
                     if 467 == counter:
-                        screen.blit(citizen_1.image, citizen_1.rect)
-                        screen.blit(citizen_2.image, citizen_2.rect)
-                        screen.blit(citizen_3.image, citizen_3.rect)
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event,screen, prohibition=True)
+                        citizen_2.movements(event,screen, prohibition=True)
+                        citizen_3.movements(event,screen, prohibition=True)
                         text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen)
                         draw = [citizen_1, citizen_2, citizen_3]
+                        main_hero.movements(event, screen, prohibition=True)
+
                     else:
                         if (466 + 15 * i) - 1 == counter:
                             draw = []
+                    pygame.display.flip()
+
+                if 466 <= counter <= 466 + 30 * i:
+                    if 467 == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event,screen, prohibition=True)
+                        citizen_2.movements(event,screen, prohibition=True)
+                        citizen_3.movements(event,screen, prohibition=True)
+                        text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
+                        draw = [citizen_1, citizen_2, citizen_3]
+                        main_hero.movements(event, screen, prohibition=True)
+
+                    else:
+                        if (466 + 15 * i) - 1 == counter:
+                            draw = []
+                    pygame.display.flip()
+
+                if 466 <= counter <= 466 + 45 * i:
+                    if 467 == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event,screen, prohibition=True)
+                        citizen_2.movements(event,screen, prohibition=True)
+                        citizen_3.movements(event,screen, prohibition=True)
+                        text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
+                        draw = [citizen_1, citizen_2, citizen_3]
+                        main_hero.movements(event, screen, prohibition=True)
+
+                    else:
+                        if (466 + 15 * i) - 1 == counter:
+                            draw = []
+                    pygame.display.flip()
 
                 counter += 1
                 print(counter)
         if settings:
             pass
+
 
         pygame.display.flip()
         pygame.time.Clock().tick(360)
