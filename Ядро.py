@@ -242,6 +242,7 @@ while running:
                     i = 50
 
                 if counter >= 466 + 45 * i:
+                    screen.blit(original_background, (0, 0))
                     main_hero.movements(event, screen, original_background, draw)
 
                 if 466 <= counter <= 466 + 15 * i:
@@ -250,13 +251,10 @@ while running:
                         citizen_1.movements(event,screen, prohibition=True)
                         citizen_2.movements(event,screen, prohibition=True)
                         citizen_3.movements(event,screen, prohibition=True)
-                        text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen)
-                        draw = [citizen_1, citizen_2, citizen_3]
                         main_hero.movements(event, screen, prohibition=True)
 
-                    else:
-                        if (466 + 15 * i) - 1 == counter:
-                            draw = []
+                        text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen)
+
                     pygame.display.flip()
 
                 if 466 <= counter <= 466 + 30 * i:
@@ -265,13 +263,9 @@ while running:
                         citizen_1.movements(event,screen, prohibition=True)
                         citizen_2.movements(event,screen, prohibition=True)
                         citizen_3.movements(event,screen, prohibition=True)
-                        text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
-                        draw = [citizen_1, citizen_2, citizen_3]
                         main_hero.movements(event, screen, prohibition=True)
 
-                    else:
-                        if (466 + 15 * i) - 1 == counter:
-                            draw = []
+                        text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
 
                 if 466 <= counter <= 466 + 45 * i:
@@ -280,13 +274,9 @@ while running:
                         citizen_1.movements(event,screen, prohibition=True)
                         citizen_2.movements(event,screen, prohibition=True)
                         citizen_3.movements(event,screen, prohibition=True)
-                        text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
-                        draw = [citizen_1, citizen_2, citizen_3]
                         main_hero.movements(event, screen, prohibition=True)
 
-                    else:
-                        if (466 + 15 * i) - 1 == counter:
-                            draw = []
+                        text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
 
                 counter += 1
