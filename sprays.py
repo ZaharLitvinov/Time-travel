@@ -86,7 +86,7 @@ class Player(pygame.sprite.Sprite):
             else:
 
                 if len(team) != 0 or event.type == pygame.KEYUP:
-                    if event.unicode.lower() == self.right or team == self.right:
+                    if team == self.right or event.unicode.lower() == self.right:
                         counter = 0
 
                         for i in range(self.number_of_elements * 30):
@@ -103,7 +103,7 @@ class Player(pygame.sprite.Sprite):
                             if counter == self.number_of_elements // 30:
                                 break
 
-                    if team == self.left or event.unicode.lower() == self.left:
+                    elif team == self.left or event.unicode.lower() == self.left:
                         counter = 0
                         for i in range(self.number_of_elements * 30):
                             if i % 30 == 0:
@@ -136,7 +136,7 @@ class Player(pygame.sprite.Sprite):
                                 if counter == self.number_of_elements // 10:
                                     break
 
-                        if team == self.left or event.text.lower() == self.left:
+                        if event.text.lower() == self.left:
                             counter = 0
                             for i in range(self.number_of_elements * 10):
                                 if i % 10 == 0:

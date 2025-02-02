@@ -256,9 +256,9 @@ while running:
                 if 466 + 15 * duration <= counter <= 466 + 30 * duration:
                     if 466 + 15 * duration == counter:
                         screen.blit(original_background, (0, 0))
-                        citizen_1.movements(event,screen, prohibition=True)
-                        citizen_2.movements(event,screen, prohibition=True)
-                        citizen_3.movements(event,screen, prohibition=True)
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
@@ -275,10 +275,12 @@ while running:
                         text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
                 if counter >= 466 + 45 * duration:
+                    if (counter >= 466 + 45 * duration) + 1 == counter:
+                        draw = [citizen_1, citizen_2, citizen_3, main_hero]
                     screen.blit(original_background, (0, 0))
-                    citizen_1.movements(event, screen, 'd')
-                    citizen_2.movements(event, screen, 'd')
-                    citizen_3.movements(event, screen, 'd')
+                    citizen_1.movements(event, screen, 'd', background=original_background,)
+                    citizen_2.movements(event, screen, 'd', background=original_background,)
+                    citizen_3.movements(event, screen, 'd', background=original_background,)
                     main_hero.movements(event, screen, prohibition=True)
                     pygame.display.flip()
 
