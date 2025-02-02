@@ -26,7 +26,7 @@ class Sprite_button(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, file_path, pos_x, pos_y, height, width, prohibition, Number_of_elements, pravo_animation, levo_animation, up='w', right='d', left='a'):
+    def __init__(self, file_path, pos_x, pos_y, height, width, prohibition, Number_of_elements, pravo_animation, levo_animation, right='d', left='a'):
         pygame.sprite.Sprite.__init__(self)
 
         # позиция размеры и картинка
@@ -40,7 +40,6 @@ class Player(pygame.sprite.Sprite):
 
         # Кнопки
 
-        self.up = up
         self.right = right
         self.left = left
 
@@ -82,20 +81,6 @@ class Player(pygame.sprite.Sprite):
                         display.blit(self.image, self.rect)
                         pygame.display.flip()
 
-                if event.type == pygame.KEYUP:
-                    if event.unicode.lower() == self.up:
-                        for i in range(5):
-                            self.pos_y -= 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-                        for i in range(5):
-                            self.pos_y += 5
-                            self.image = pygame.image.load(self.file_path_global)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
             else:
                 if event.type == pygame.KEYUP:
 

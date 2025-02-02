@@ -54,9 +54,9 @@ citizen_animation_levo = ['sprites\\characters\\житель\\житель_вл�
 main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo)  # Даниил
 moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False, 0, 0, 0)  # Луна
 kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False, 0, 0, 0)  # Кира
-citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
-citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
-citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 72, 100, False, 4, citizen_animation_pravo, citizen_animation_levo)
+citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
+citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
+citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 # Разговор
 text = sprays.Speech()
 
@@ -257,8 +257,8 @@ while running:
 
                     pygame.display.flip()
 
-                if 466 <= counter <= 466 + 30 * i:
-                    if 467 == counter:
+                if 466 + 15 * i <= counter <= 466 + 30 * i:
+                    if 466 + 15 * i == counter:
                         screen.blit(original_background, (0, 0))
                         citizen_1.movements(event,screen, prohibition=True)
                         citizen_2.movements(event,screen, prohibition=True)
@@ -268,8 +268,8 @@ while running:
                         text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
 
-                if 466 <= counter <= 466 + 45 * i:
-                    if 467 == counter:
+                if 466 + 30 * i <= counter <= 466 + 45 * i:
+                    if 466 + 30 * i == counter:
                         screen.blit(original_background, (0, 0))
                         citizen_1.movements(event,screen, prohibition=True)
                         citizen_2.movements(event,screen, prohibition=True)
