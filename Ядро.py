@@ -57,6 +57,7 @@ kira = sprays.Player('sprites\\characters\\кира\\Первое положен
 citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
+seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 500)
 # Разговор
 text = sprays.Speech()
 
