@@ -7,8 +7,8 @@ import sprays
 pygame.init()
 sizes_x, sizes_y = 1715, 970   # по размерам изображения
 screen = pygame.display.set_mode((sizes_x, sizes_y))
-# icon = pygame.image.load('sprays\\button\\старт_1.png')
-# pygame.display.set_icon(icon)
+icon = pygame.image.load('sprites\\иконка.png')
+pygame.display.set_icon(icon)
 running = True
 
 # создания кнопак
@@ -57,7 +57,7 @@ kira = sprays.Player('sprites\\characters\\кира\\Первое положен
 citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
-seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 500)
+seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 500, 685, 46, 65, False, 0, 0, 0)
 # Разговор
 text = sprays.Speech()
 
@@ -121,7 +121,6 @@ while running:
 
         if game:
             if prehistory and (pygame.mouse.get_focused() or event.type == p_l):
-                print(counter)
                 text_t = ['Что за артефакт я нашел, Луна? Он кажется невероятно мощным',
                           'Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.',
                           'Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.',
