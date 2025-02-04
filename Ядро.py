@@ -52,7 +52,7 @@ citizen_animation_levo = ['sprites\\characters\\житель\\житель_вл�
 
 # Персонаж
 main_hero = sprays.Player('sprites\\characters\\даниил\\Первое положение.png', 100, 450, 47, 64, False, 9, main_hero_animation_pravo, main_hero_animation_levo)  # Даниил
-moon = sprays.Player('sprites\\characters\\moon.png', 400, 350, 100, 100, False, 0, 0, 0)  # Луна
+moon = sprays.Player('sprites\\characters\\moon.png', 300, 300, 100, 100, False, 0, 0, 0)  # Луна
 kira = sprays.Player('sprites\\characters\\кира\\Первое положение.png', 500, 450, 74, 59, False, 0, 0, 0)  # Кира
 citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
@@ -70,7 +70,7 @@ egypt = False
 prehistory = True
 settings = False
 counter = 0
-p_l =pygame.USEREVENT + 25
+p_l = pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
 draw = []
 
@@ -109,7 +109,7 @@ while running:
                     # Нажата кнопка закрывает программу
 
                     if event.type == pygame.MOUSEBUTTONUP:
-                        start_window = False
+                        running = False
 
             screen.blit(original_background, (0, 0))
             screen.blit(playful_button.image, playful_button.rect)
@@ -275,12 +275,11 @@ while running:
                         text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
                     pygame.display.flip()
                 if counter >= 466 + 45 * duration:
-                    if (counter >= 466 + 45 * duration) + 1 == counter:
+                    if (466 + 45 * duration) + 1 == counter:
                         draw = [citizen_1, citizen_2, citizen_3, main_hero]
+                    print(draw)
                     screen.blit(original_background, (0, 0))
-                    citizen_1.movements(event, screen, 'd', background=original_background,)
-                    citizen_2.movements(event, screen, 'd', background=original_background,)
-                    citizen_3.movements(event, screen, 'd', background=original_background,)
+                    citizen_1.movements(event, screen, 'd', background=original_background, draw=draw)
                     main_hero.movements(event, screen, prohibition=True)
                     pygame.display.flip()
 

@@ -55,7 +55,7 @@ class Player(pygame.sprite.Sprite):
     # если нажата кнопка
 
     def movements(self, event, display, team='',  background='', draw=[], prohibition=False):
-
+        print(draw)
         if self.prohibition or prohibition:
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
@@ -90,6 +90,10 @@ class Player(pygame.sprite.Sprite):
                         counter = 0
 
                         for i in range(self.number_of_elements * 30):
+                            if len(draw) != 0:
+                                for draw_i in draw:
+                                    display.blit(draw_i.image, draw_i.rect)
+                            pygame.display.flip()
                             if i % 30 == 0:
                                 file_path = self.pravo_animation[counter]
                                 self.pos_x += 5
@@ -99,6 +103,7 @@ class Player(pygame.sprite.Sprite):
                             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
+
                             pygame.display.flip()
                             if counter == self.number_of_elements // 30:
                                 break
@@ -106,6 +111,10 @@ class Player(pygame.sprite.Sprite):
                     elif team == self.left or event.unicode.lower() == self.left:
                         counter = 0
                         for i in range(self.number_of_elements * 30):
+                            if len(draw) != 0:
+                                for draw_i in draw:
+                                    display.blit(draw_i.image, draw_i.rect)
+                            pygame.display.flip()
                             if i % 30 == 0:
                                 file_path = self.levo_animation[counter]
                                 self.pos_x -= 5
@@ -115,6 +124,7 @@ class Player(pygame.sprite.Sprite):
                             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                             display.blit(background, (0, 0))
                             display.blit(self.image, self.rect)
+
                             pygame.display.flip()
                             if counter == self.number_of_elements // 30:
                                 break
@@ -123,6 +133,10 @@ class Player(pygame.sprite.Sprite):
                         if event.text.lower() == self.right:
                             counter = 0
                             for i in range(self.number_of_elements * 10):
+                                if len(draw) != 0:
+                                    for draw_i in draw:
+                                        display.blit(draw_i.image, draw_i.rect)
+                                pygame.display.flip()
                                 if i % 10 == 0:
                                     file_path = self.pravo_animation[counter]
                                     self.pos_x += 5
@@ -132,6 +146,7 @@ class Player(pygame.sprite.Sprite):
                                 self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
                                 display.blit(background, (0, 0))
                                 display.blit(self.image, self.rect)
+
                                 pygame.display.flip()
                                 if counter == self.number_of_elements // 10:
                                     break
@@ -139,6 +154,10 @@ class Player(pygame.sprite.Sprite):
                         if event.text.lower() == self.left:
                             counter = 0
                             for i in range(self.number_of_elements * 10):
+                                if len(draw) != 0:
+                                    for draw_i in draw:
+                                        display.blit(draw_i.image, draw_i.rect)
+                                pygame.display.flip()
                                 if i % 10 == 0:
                                     file_path = self.levo_animation[counter]
                                     self.pos_x -= 5
@@ -159,6 +178,7 @@ class Player(pygame.sprite.Sprite):
                 for draw_i in draw:
                     display.blit(draw_i.image, draw_i.rect)
             pygame.display.flip()
+            print(draw)
 
 class Speech(pygame.sprite.Sprite):
     def __init__(self):
