@@ -120,6 +120,7 @@ while running:
 
         if game:
             if prehistory and (pygame.mouse.get_focused() or event.type == p_l):
+                print(counter)
                 text_t = ['Что за артефакт я нашел, Луна? Он кажется невероятно мощным',
                           'Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.',
                           'Как мне узнать, когда и где мне следует использовать его? Вся эта энергия сбивает с толку.',
@@ -142,6 +143,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[0], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (15 * duration), counter)
 
                 if 15 * duration < counter <= 30 * duration:
                     if (15 * duration) + 1 == counter:
@@ -151,6 +153,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[1], moon, moon.height, moon.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (30 * duration), counter)
 
                 if 30 * duration < counter <= 45 * duration:
                     if (30 * duration) + 1 == counter:
@@ -160,6 +163,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[2], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (45 * duration), counter)
 
                 if 45 * duration < counter <= 60 * duration:
                     if (45 * duration) + 1 == counter:
@@ -169,6 +173,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[3], kira, kira.height, kira.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (60 * duration), counter)
 
                 if 75 * duration < counter <= 90 * duration:
                     if (75 * duration) + 1 == counter:
@@ -178,6 +183,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[4], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (90 * duration), counter)
 
                 if 90 * duration < counter <= 105 * duration:
                     if (90 * duration) + 1 == counter:
@@ -187,6 +193,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[5], kira, kira.height, kira.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (105 * duration), counter)
 
                 if 105 * duration < counter <= 120 * duration:
                     if (105 * duration) + 1 == counter:
@@ -196,6 +203,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[6], moon, moon.height, moon.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, (120 * duration), counter)
 
                 if 120 * duration < counter <= 135 * duration:
                     if (120 * duration) + 1 == counter:
@@ -205,6 +213,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[7], main_hero, main_hero.height, main_hero.width, screen)
                     pygame.display.flip()
+                    counter = text.click(event, 135 * duration, counter)
 
                 if counter == (135 * duration) + 1:
                     prehistory = False
@@ -249,7 +258,7 @@ while running:
                         citizen_3.movements(event,screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
-                        text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen)
+                        text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
 
                     pygame.display.flip()
 
@@ -261,7 +270,7 @@ while running:
                         citizen_3.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
-                        text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen)
+                        text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
                     pygame.display.flip()
 
                 if 466 + 30 * duration <= counter <= 466 + 45 * duration:
@@ -272,20 +281,12 @@ while running:
                         citizen_3.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
-                        text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen)
-                    pygame.display.flip()
-                if counter >= 466 + 45 * duration:
-                    if (466 + 45 * duration) + 1 == counter:
-                        draw = [citizen_1, citizen_2, citizen_3, main_hero]
-                    print(draw)
-                    screen.blit(original_background, (0, 0))
-                    citizen_1.movements(event, screen, 'd', background=original_background, draw=draw)
-                    main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
                     pygame.display.flip()
 
-                if counter >= 1000 + 45 * duration:
+                if counter >= 466 + 45 * duration:
                     screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, background=original_background, draw=draw)
+                    main_hero.movements(event, screen, background=original_background, draw=[citizen_1, citizen_2, citizen_3])
 
                 counter += 1
 

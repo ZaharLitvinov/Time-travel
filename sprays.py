@@ -55,7 +55,6 @@ class Player(pygame.sprite.Sprite):
     # если нажата кнопка
 
     def movements(self, event, display, team='',  background='', draw=[], prohibition=False):
-        print(draw)
         if self.prohibition or prohibition:
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
@@ -178,14 +177,14 @@ class Player(pygame.sprite.Sprite):
                 for draw_i in draw:
                     display.blit(draw_i.image, draw_i.rect)
             pygame.display.flip()
-            print(draw)
+
 
 class Speech(pygame.sprite.Sprite):
     def __init__(self):
         self.pos_x = 222
         self.pos_y = 222
 
-    def draw(self, text_t, personage, personage_height, personage_width, display):
+    def draw(self, text_t, personage, personage_height, personage_width, display, calor=(255, 255, 255, 255)):
         # изменяем текст
         counter = 1
         text_finite = []
@@ -201,9 +200,15 @@ class Speech(pygame.sprite.Sprite):
         self.pos_x = personage.pos_x - personage_width
         self.pos_y = personage.pos_y - (len(text_finite) * 5)
         for i, line in enumerate(text):
-            text_surface = font.render(line, True, (255, 255, 255))  # Создаем поверхность текста
+            text_surface = font.render(line, True, calor)  # Создаем поверхность текста
             display.blit(text_surface, (self.pos_x, self.pos_y + i * 15))  # Отображаем текст с отступом
         pygame.display.flip()
+
+    def click(self, event, number, counter):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            return number
+        else:
+            return counter
 
 class Video:
     def __init__(self, path):
