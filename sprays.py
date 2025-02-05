@@ -83,85 +83,39 @@ class Player(pygame.sprite.Sprite):
                         pygame.display.flip()
 
             else:
+                if (event.type == pygame.TEXTINPUT and event.text.lower() == self.right) or (event.type == pygame.KEYUP and event.unicode.lower() == self.right) or (len(team) != 0 and team == self.right):
+                    counter = 0
+                    for i in range(self.number_of_elements * 15):
 
-                if len(team) != 0:
-                    if team == self.right or event.unicode.lower() == self.right:
-                        counter = 0
+                        if i % 15 == 0:
+                            file_path = self.pravo_animation[counter]
+                            self.pos_x += 5
+                            counter += 1
 
-                        for i in range(self.number_of_elements * 30):
-                            if len(draw) != 0:
-                                for draw_i in draw:
-                                    display.blit(draw_i.image, draw_i.rect)
-                            pygame.display.flip()
-                            if i % 30 == 0:
-                                file_path = self.pravo_animation[counter]
-                                self.pos_x += 5
-                                counter += 1
+                        self.image = pygame.image.load(file_path)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(background, (0, 0))
+                        display.blit(self.image, self.rect)
+                        if len(draw) != 0:
+                            for draw_i in draw:
+                                display.blit(draw_i.image, draw_i.rect)
+                        pygame.display.flip()
+                elif (event.type == pygame.TEXTINPUT and event.text.lower() == self.left) or (event.type == pygame.KEYUP and event.unicode.lower() == self.left) or (len(team) != 0 and team == self.left):
+                    counter = 0
+                    for i in range(self.number_of_elements * 10):
 
-                            self.image = pygame.image.load(file_path)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(background, (0, 0))
-                            display.blit(self.image, self.rect)
-
-                            pygame.display.flip()
-                            if counter == self.number_of_elements // 30:
-                                break
-
-                    elif team == self.left:
-                        counter = 0
-                        for i in range(self.number_of_elements * 30):
-                            if len(draw) != 0:
-                                for draw_i in draw:
-                                    display.blit(draw_i.image, draw_i.rect)
-                            pygame.display.flip()
-                            if i % 30 == 0:
-                                file_path = self.levo_animation[counter]
-                                self.pos_x -= 5
-                                counter += 1
-
-                            self.image = pygame.image.load(file_path)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(background, (0, 0))
-                            display.blit(self.image, self.rect)
-
-                            pygame.display.flip()
-                            if counter == self.number_of_elements // 30:
-                                break
-                else:
-                    if (event.type == pygame.TEXTINPUT and event.text.lower() == self.right) or (event.type == pygame.KEYUP and event.unicode.lower() == self.right):
-
-                        counter = 0
-                        for i in range(self.number_of_elements * 15):
-                            if len(draw) != 0:
-                                for draw_i in draw:
-                                    display.blit(draw_i.image, draw_i.rect)
-                            pygame.display.flip()
-                            if i % 15 == 0:
-                                file_path = self.pravo_animation[counter]
-                                self.pos_x += 5
-                                counter += 1
-                            self.image = pygame.image.load(file_path)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(background, (0, 0))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
-                    elif (event.type == pygame.TEXTINPUT and event.text.lower() == self.left) or (event.type == pygame.KEYUP and event.unicode.lower() == self.left):
-
-                        counter = 0
-                        for i in range(self.number_of_elements * 10):
-                            if len(draw) != 0:
-                                for draw_i in draw:
-                                    display.blit(draw_i.image, draw_i.rect)
-                            pygame.display.flip()
-                            if i % 15 == 0:
-                                file_path = self.levo_animation[counter]
-                                self.pos_x -= 5
-                                counter += 1
-                            self.image = pygame.image.load(file_path)
-                            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-                            display.blit(background, (0, 0))
-                            display.blit(self.image, self.rect)
-                            pygame.display.flip()
+                        if i % 15 == 0:
+                            file_path = self.levo_animation[counter]
+                            self.pos_x -= 5
+                            counter += 1
+                        self.image = pygame.image.load(file_path)
+                        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+                        display.blit(background, (0, 0))
+                        display.blit(self.image, self.rect)
+                        if len(draw) != 0:
+                            for draw_i in draw:
+                                display.blit(draw_i.image, draw_i.rect)
+                        pygame.display.flip()
             self.image = pygame.image.load(self.file_path_global)
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)

@@ -74,6 +74,7 @@ counter = 0
 p_l = pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
 draw = []
+counter_min = 0
 
 
 # основной цикл
@@ -253,12 +254,13 @@ while running:
                 if 466 <= counter <= 466 + 15 * duration:
                     if 467 == counter:
                         screen.blit(original_background, (0, 0))
-                        citizen_1.movements(event,screen, prohibition=True)
-                        citizen_2.movements(event,screen, prohibition=True)
-                        citizen_3.movements(event,screen, prohibition=True)
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
+                    counter = text.click(event, 466 + 15 * duration, counter)
 
                     pygame.display.flip()
 
@@ -271,6 +273,7 @@ while running:
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
+                    counter = text.click(event, 466 + 30 * duration, counter)
                     pygame.display.flip()
 
                 if 466 + 30 * duration <= counter <= 466 + 45 * duration:
@@ -282,11 +285,16 @@ while running:
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
+                    counter = text.click(event, 466 + 45 * duration, counter)
                     pygame.display.flip()
 
                 if counter >= 466 + 45 * duration:
-                    screen.blit(original_background, (0, 0))
-                    main_hero.movements(event, screen, background=original_background, draw=[citizen_1, citizen_2, citizen_3])
+                    if counter_min == 0:
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, background=original_background, draw=[citizen_1, citizen_2, citizen_3])
+                    counter_min += 1
+                if counter_min == 1:
+                    counter_min = 0
 
                 counter += 1
 
