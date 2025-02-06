@@ -54,7 +54,7 @@ class Player(pygame.sprite.Sprite):
 
     # если нажата кнопка
 
-    def movements(self, event, display, team='',  background='', draw=[], prohibition=False):
+    def movements(self, event, display, team='',  background='', draw=[], prohibition=False, display_x=10000):
         if self.prohibition or prohibition:
             self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
             display.blit(self.image, self.rect)
@@ -85,9 +85,9 @@ class Player(pygame.sprite.Sprite):
             else:
                 if (event.type == pygame.TEXTINPUT and event.text.lower() == self.right) or (event.type == pygame.KEYUP and event.unicode.lower() == self.right) or (len(team) != 0 and team == self.right):
                     counter = 0
-                    for i in range(self.number_of_elements * 15):
+                    for i in range(self.number_of_elements * 20):
 
-                        if i % 15 == 0:
+                        if i % 20 == 0:
                             file_path = self.pravo_animation[counter]
                             self.pos_x += 5
                             counter += 1
@@ -102,9 +102,9 @@ class Player(pygame.sprite.Sprite):
                         pygame.display.flip()
                 elif (event.type == pygame.TEXTINPUT and event.text.lower() == self.left) or (event.type == pygame.KEYUP and event.unicode.lower() == self.left) or (len(team) != 0 and team == self.left):
                     counter = 0
-                    for i in range(self.number_of_elements * 10):
+                    for i in range(self.number_of_elements * 20):
 
-                        if i % 15 == 0:
+                        if i % 20 == 0:
                             file_path = self.levo_animation[counter]
                             self.pos_x -= 5
                             counter += 1
@@ -116,13 +116,13 @@ class Player(pygame.sprite.Sprite):
                             for draw_i in draw:
                                 display.blit(draw_i.image, draw_i.rect)
                         pygame.display.flip()
-            self.image = pygame.image.load(self.file_path_global)
-            self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
-            display.blit(self.image, self.rect)
-            if len(draw) != 0:
-                for draw_i in draw:
-                    display.blit(draw_i.image, draw_i.rect)
-            pygame.display.flip()
+        self.image = pygame.image.load(self.file_path_global)
+        self.rect = self.image.get_rect(center=(self.pos_x, self.pos_y))
+        display.blit(self.image, self.rect)
+        if len(draw) != 0:
+            for draw_i in draw:
+                display.blit(draw_i.image, draw_i.rect)
+        pygame.display.flip()
 
 
 class Speech(pygame.sprite.Sprite):

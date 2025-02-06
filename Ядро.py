@@ -57,7 +57,7 @@ kira = sprays.Player('sprites\\characters\\кира\\Первое положен
 citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 200, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
-seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 500, 685, 46, 65, False, 0, 0, 0)
+seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 1000, 685, 46, 65, False, 0, 0, 0)
 # Разговор
 text = sprays.Speech()
 
@@ -75,6 +75,7 @@ p_l = pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
 draw = []
 counter_min = 0
+counter_buffer = 0
 
 
 # основной цикл
@@ -257,10 +258,11 @@ while running:
                         citizen_1.movements(event, screen, prohibition=True)
                         citizen_2.movements(event, screen, prohibition=True)
                         citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[0], citizen_1, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
-                    counter = text.click(event, 466 + 15 * duration, counter)
+                    counter = text.click(event, (466 + (15 * duration)-2), counter)
 
                     pygame.display.flip()
 
@@ -270,10 +272,11 @@ while running:
                         citizen_1.movements(event, screen, prohibition=True)
                         citizen_2.movements(event, screen, prohibition=True)
                         citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[1], citizen_2, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
-                    counter = text.click(event, 466 + 30 * duration, counter)
+                    counter = text.click(event, (466 + (30 * duration)-2), counter)
                     pygame.display.flip()
 
                 if 466 + 30 * duration <= counter <= 466 + 45 * duration:
@@ -282,19 +285,33 @@ while running:
                         citizen_1.movements(event, screen, prohibition=True)
                         citizen_2.movements(event, screen, prohibition=True)
                         citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
 
                         text.draw(text_t[2], citizen_3, citizen_1.height, citizen_1.width, screen, (255, 0, 0, 255))
-                    counter = text.click(event, 466 + 45 * duration, counter)
+                    counter = text.click(event, (466 + (45 * duration)-2), counter)
                     pygame.display.flip()
 
-                if counter >= 466 + 45 * duration:
+                if counter >= 466 + 45 * duration and main_hero.pos_x <= 900:
                     if counter_min == 0:
                         screen.blit(original_background, (0, 0))
-                        main_hero.movements(event, screen, background=original_background, draw=[citizen_1, citizen_2, citizen_3])
+                        main_hero.movements(event, screen, background=original_background, draw=[citizen_1, citizen_2, citizen_3, seller], display_x=sizes_x)
                     counter_min += 1
+                if main_hero.pos_x <= 30:
+                    main_hero.pos_x = 31
+                if counter_buffer == 0 and main_hero.pos_x >= 900:
+                    counter_buffer = counter
                 if counter_min == 1:
                     counter_min = 0
+
+                if counter_buffer + 15 * duration:
+                    if 466 + 30 * duration == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
+                        main_hero.movements(event, screen, prohibition=True)
 
                 counter += 1
 
