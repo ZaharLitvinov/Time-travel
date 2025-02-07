@@ -122,6 +122,11 @@ while running:
                 screen.fill(color=(0, 0, 0, 255))
 
         if game:
+            with open('conservation.txt', 'r+', encoding='utf-8') as file:
+                if '1' in file.read():
+                    prehistory = False
+                    egypt = True
+
             if prehistory and (pygame.mouse.get_focused() or event.type == p_l):
                 text_t = ['Что за артефакт я нашел, Луна? Он кажется невероятно мощным',
                           'Этот амулет — ключ к древним тайнам. Он может открыть двери в различные эпохи, но помни, его сила значительна, и неправильное использование может привести к разрушениям.',
@@ -167,7 +172,7 @@ while running:
                     pygame.display.flip()
                     counter = text.click(event, (45 * duration), counter)
 
-                if 45 * duration < counter <= 60 * duration:
+                if 45 * duration < counter <= 75 * duration:
                     if (45 * duration) + 1 == counter:
                         screen.blit(original_background, (0, 0))
                         main_hero.movements(event, screen, prohibition=True)
@@ -175,7 +180,7 @@ while running:
                         kira.movements(event, screen, prohibition=True)
                         text.draw(text_t[3], kira, kira.height, kira.width, screen)
                     pygame.display.flip()
-                    counter = text.click(event, (60 * duration), counter)
+                    counter = text.click(event, (75 * duration)-2, counter)
 
                 if 75 * duration < counter <= 90 * duration:
                     if (75 * duration) + 1 == counter:
@@ -228,7 +233,11 @@ while running:
                 text_t = ['Слышал, что фараон собирает армию, чтобы завоевать соседние земли!',
                           'Да, но у него есть другие проблемы. Новый закон требует жертву для богов. Люди боятся!',
                           'Надеюсь, это не коснется нас! Мы просто хотим жить мирно.',
-                          '']
+                          'О, юноша! Ты не местный? У нас есть чудесные артефакты из самых чистых песков пустыни!',
+                          'Что за артефакты ты предлагаешь?',
+                          'Скарабеи удачи, священные амулеты и даже драгоценные камни, которые раньше принадлежали фараонов!',
+                          'Но у меня нет золота, чтобы купить что-либо...',
+                          'Ну, строить бизнес здесь – это не только загребать деньги, но и заключать сделки! Ты, возможно, можешь помочь мне найти что-то ценное в пирамиде.']
                 if counter == 0:
                     original_background = pygame.image.load('sprites\\backgrounds\\egypt_background (2).png')
                     sizes_x, sizes_y = 1340, 890  # по размерам изображения
@@ -304,15 +313,62 @@ while running:
                 if counter_min == 1:
                     counter_min = 0
 
-                if counter_buffer + 15 * duration:
-                    if 466 + 30 * duration == counter:
+                if counter_buffer <= counter <= counter_buffer + 15 * duration and counter_buffer != 0:
+                    if counter_buffer == counter:
                         screen.blit(original_background, (0, 0))
                         citizen_1.movements(event, screen, prohibition=True)
                         citizen_2.movements(event, screen, prohibition=True)
                         citizen_3.movements(event, screen, prohibition=True)
                         seller.movements(event, screen, prohibition=True)
                         main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[3], seller, seller.height, seller.width, screen)
+                    counter = text.click(event, (counter_buffer + (15 * duration) - 2), counter)
 
+                if counter_buffer + 15 * duration <= counter <= counter_buffer + 30 * duration and counter_buffer != 0:
+                    if counter_buffer + 15 * duration == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
+                        main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[4], main_hero, main_hero.height, main_hero.width, screen)
+                    counter = text.click(event, (counter_buffer + (30 * duration) - 2), counter)
+
+                if counter_buffer + 30 * duration <= counter <= counter_buffer + 45 * duration and counter_buffer != 0:
+                    if counter_buffer + 30 * duration == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
+                        main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[5], seller, seller.height, seller.width, screen)
+                    counter = text.click(event, (counter_buffer + (45 * duration) - 2), counter)
+
+                if counter_buffer + 45 * duration <= counter <= counter_buffer + 60 * duration and counter_buffer != 0:
+                    if counter_buffer + 45 * duration == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
+                        main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[6], main_hero, main_hero.height, main_hero.width, screen)
+                    counter = text.click(event, (counter_buffer + (60 * duration) - 2), counter)
+
+                if counter_buffer + 60 * duration <= counter <= counter_buffer + 75 * duration and counter_buffer != 0:
+                    if counter_buffer + 60 * duration == counter:
+                        screen.blit(original_background, (0, 0))
+                        citizen_1.movements(event, screen, prohibition=True)
+                        citizen_2.movements(event, screen, prohibition=True)
+                        citizen_3.movements(event, screen, prohibition=True)
+                        seller.movements(event, screen, prohibition=True)
+                        main_hero.movements(event, screen, prohibition=True)
+                        text.draw(text_t[7], seller, seller.height, seller.width, screen)
+                    counter = text.click(event, (counter_buffer + (75 * duration) - 2), counter)
+
+                pygame.display.flip()
                 counter += 1
 
         if settings:
