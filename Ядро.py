@@ -58,6 +58,8 @@ citizen_1 = sprays.Player('sprites\\characters\\житель\\Первое по�
 citizen_2 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 272, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 citizen_3 = sprays.Player('sprites\\characters\\житель\\Первое положение.png', 344, 685, 48, 67, False, 4, citizen_animation_pravo, citizen_animation_levo)
 seller = sprays.Player('sprites\\characters\\торговец\\Первое положение.png', 1000, 685, 46, 65, False, 0, 0, 0)
+wiseacre = sprays.Player('sprites\\characters\\мудрец\\мудрец.png', 200, 640, 46, 65, False, 0, 0, 0)
+paintress = sprays.Player('sprites\\characters\\художница\\художница.png', 1000, 640, 48, 62, False, 0, 0, 0)
 # Разговор
 text = sprays.Speech()
 
@@ -125,16 +127,16 @@ while running:
 
         if game:
             with open('conservation.txt', 'r+', encoding='utf-8') as file:
-                if '1' in file.read():
+                level_check = file.read()
+                if '1' in level_check:
                     prehistory = False
                     egypt = True
                     egypt_one = True
-                if '2' in file.read():
+                if '2' in level_check:
                     prehistory = False
                     egypt = True
                     egypt_one = False
                     egypt_two = True
-                print(prehistory, egypt, egypt_one)
                 file.close()
 
             if prehistory and (pygame.mouse.get_focused() or event.type == p_l):
@@ -394,12 +396,20 @@ while running:
                             file.close()
 
                 if egypt_two:
-                    text_t = []
+                    main_hero.pos_y = 640
+                    text_t = ['Скоро в святилище сберут жертв. Ты не знаешь, каково это быть в их шкуре, но подходит умный... Что ты ищешь в Египте, путник?',
+                              'Я ищу древний артефакт в пирамиде. Как мне туда попасть?',
+                              'Ты должен расшифровать древние иероглифы, которые охраняют вход. Могу помочь тебе, если принесешь священный свиток.',
+                              'Привет! Ты выглядишь рассеянным. Что привело тебя в этот мир? Хочешь увидеть моё искусство?',
+                              'Я ищу артефакт, который поможет мне вернуться домой.',
+                              'Погоди, мой друг! Если ты умеешь читать иероглифы, возможно, я смогу показать некоторые старинные изображения, которые помогут тебе!',
+                              'Это невероятно! Может, они укажут мне путь?']
                     if counter == 0:
                         original_background = pygame.image.load('sprites\\backgrounds\\egypt_background.png')
                         sizes_x, sizes_y = 1340, 890  # по размерам изображения
                         screen = pygame.display.set_mode((sizes_x, sizes_y))
                         duration = 50
+
 
                         startTime = time.time()
                         progressBar = ProgressBar(screen, 370, 715, 500, 40, lambda: 1 - (time.time() - startTime) / 10,
@@ -413,11 +423,98 @@ while running:
 
                     if counter == 466:
                         progressBar = 0
-                        original_background = pygame.image.load('sprites\\backgrounds\\first_egypt_background.PNG')
-                        sizes_x, sizes_y = 1456, 816  # по размерам изображения
+                        original_background = pygame.image.load('sprites\\backgrounds\\египет.jpg')
+                        sizes_x, sizes_y = 1280, 717  # по размерам изображения
                         screen = pygame.display.set_mode((sizes_x, sizes_y))
                         duration = 50
+                        screen.blit(original_background, (0, 0))
+                        main_hero.movements(event, screen, prohibition=True)
+                        wiseacre.movements(event, screen, prohibition=True)
+                        paintress.movements(event, screen, prohibition=True)
 
+                    if 466 <= counter <= 466 + 15 * duration:
+                        if counter == 466:
+                            screen.blit(original_background, (0, 0))
+                            main_hero.movements(event, screen, prohibition=True)
+                            wiseacre.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[0], wiseacre, wiseacre.height, wiseacre.width, screen)
+                        counter = text.click(event, (466 + (15 * duration) - 2), counter)
+
+                    if 466 + 15 * duration <= counter <= 466 + 30 * duration:
+                        if 466 + 15 * duration == counter:
+                            screen.blit(original_background, (0, 0))
+                            main_hero.movements(event, screen, prohibition=True)
+                            wiseacre.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[1], main_hero, main_hero.height, main_hero.width, screen)
+                        counter = text.click(event, (466 + (30 * duration) - 2), counter)
+
+                    if 466 + 30 * duration <= counter <= 466 + 45 * duration:
+                        if 466 + 30 * duration == counter:
+                            screen.blit(original_background, (0, 0))
+                            main_hero.movements(event, screen, prohibition=True)
+                            wiseacre.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[2], wiseacre, wiseacre.height, wiseacre.width, screen)
+                        counter = text.click(event, (466 + (45 * duration) - 2), counter)
+
+                    if counter >= 466 + 45 * duration and main_hero.pos_x <= 900:
+                        if counter_min == 0:
+                            screen.blit(original_background, (0, 0))
+                            main_hero.movements(event, screen, background=original_background, draw=[wiseacre, paintress], display_x=sizes_x)
+                        counter_min += 1
+                    if main_hero.pos_x <= 30:
+                        main_hero.pos_x = 31
+                    if counter_buffer == 0 and main_hero.pos_x >= 900:
+                        counter_buffer = counter
+                    if counter_min == 1:
+                        counter_min = 0
+
+                    if counter_buffer <= counter <= counter_buffer + 15 * duration and counter_buffer != 0:
+                        if counter_buffer == counter:
+                            screen.blit(original_background, (0, 0))
+                            wiseacre.movements(event, screen, prohibition=True)
+                            main_hero.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[3], seller, seller.height, seller.width, screen)
+                        counter = text.click(event, (counter_buffer + (15 * duration) - 2), counter)
+
+                    if counter_buffer + 15 * duration <= counter <= counter_buffer + 30 * duration and counter_buffer != 0:
+                        if counter_buffer == counter:
+                            screen.blit(original_background, (0, 0))
+                            wiseacre.movements(event, screen, prohibition=True)
+                            main_hero.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[4], seller, seller.height, seller.width, screen)
+                        counter = text.click(event, (counter_buffer + (30 * duration) - 2), counter)
+
+                    if counter_buffer + 30 * duration <= counter <= counter_buffer + 45 * duration and counter_buffer != 0:
+                        if counter_buffer == counter:
+                            screen.blit(original_background, (0, 0))
+                            wiseacre.movements(event, screen, prohibition=True)
+                            main_hero.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[5], seller, seller.height, seller.width, screen)
+                        counter = text.click(event, (counter_buffer + (45 * duration) - 2), counter)
+
+                    if counter_buffer + 45 * duration <= counter <= counter_buffer + 50 * duration and counter_buffer != 0:
+                        if counter_buffer == counter:
+                            screen.blit(original_background, (0, 0))
+                            wiseacre.movements(event, screen, prohibition=True)
+                            main_hero.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[6], seller, seller.height, seller.width, screen)
+                        counter = text.click(event, (counter_buffer + (50 * duration) - 2), counter)
+
+                    if counter_buffer + 50 * duration <= counter <= counter_buffer + 65 * duration and counter_buffer != 0:
+                        if counter_buffer == counter:
+                            screen.blit(original_background, (0, 0))
+                            wiseacre.movements(event, screen, prohibition=True)
+                            main_hero.movements(event, screen, prohibition=True)
+                            paintress.movements(event, screen, prohibition=True)
+                            text.draw(text_t[7], seller, seller.height, seller.width, screen)
+                        counter = text.click(event, (counter_buffer + (65 * duration) - 2), counter)
                     counter += 1
 
         if settings:
