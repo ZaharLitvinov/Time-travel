@@ -1,7 +1,2 @@
 pygame
 pygame_widgets
-time
-os
-errno
-pymediainfo
-ffpyplayer
