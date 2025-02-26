@@ -3,6 +3,8 @@ import time
 from pygame_widgets.progressbar import ProgressBar
 import pygame
 import sprays
+from Settings import settings
+
 
 pygame.init()
 sizes_x, sizes_y = 1715, 970   # по размерам изображения
@@ -71,7 +73,7 @@ start_window = True
 game = False
 egypt = False
 prehistory = True
-settings = False
+settings1 = False
 counter = 0
 p_l = pygame.USEREVENT + 25
 pygame.time.set_timer(p_l, 10)
@@ -81,6 +83,8 @@ counter_buffer = 0
 egypt_one = False
 egypt_two = False
 ending = False
+fps = '250'
+count = 0
 
 # основной цикл
 while running:
@@ -120,7 +124,7 @@ while running:
                     # Нажата кнопка закрывает этот файл закрываем, а с настройками запускаем
 
                     if event.type == pygame.MOUSEBUTTONUP:
-                        settings = True
+                        settings1 = True
                         start_window = False
 
                 # Проверка Кнопки выход
@@ -520,9 +524,15 @@ while running:
             text_surface = font.render('Продолжение следует', True, (255, 255, 255, 255))  # Создаем поверхность текста
             screen.blit(text_surface, (100, 100))
             pygame.display.flip()
-        if settings:
-            pass
+
+        if settings1:
+            settings1, fps, count = settings(fps, count)
+            if settings1 == False:
+                start_window = True
+            continue
+            
+
         pygame.display.flip()
-        pygame.time.Clock().tick(360)
+        pygame.time.Clock().tick(int(fps))
 
 pygame.quit()
